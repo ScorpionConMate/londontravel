@@ -8,8 +8,9 @@ import { ContainerComponent } from './home/container/container.component';
 const routes: Routes = [
   { path: '', component: ContainerComponent },
   { path: 'habitaciones', component: StepOneCnComponent },
-  { path: ':id', component: StepTwoCnComponent },
-  { path: ':id/finish', component: StepThreeCnComponent }
+  { path: 'habitaciones/:id', component: StepTwoCnComponent },
+  { path: 'habitaciones/:id/finish', component: StepThreeCnComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
