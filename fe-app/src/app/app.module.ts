@@ -6,15 +6,8 @@ import { AppComponent } from './app.component';
 import { ContainerComponent } from './home/container/container.component';
 import { MainComponent } from './home/main/main.component';
 import { FormComponent } from './home/form/form.component';
-import { TitleComponent } from './habitaciones/title/title.component';
-import { StepOneCnComponent } from './habitaciones/step-one-cn/step-one-cn.component';
-import { AvailablesComponent } from './habitaciones/availables/availables.component';
-import { StepTwoCnComponent } from './formulario/step-two-cn/step-two-cn.component';
-import { TitleFormComponent } from './formulario/title/title.component';
-import { CarrouselComponent } from './formulario/carrousel/carrousel.component';
-import { FormHabitacionesComponent } from './formulario/form/form.component';
-import { FinishTitleComponent } from './final/finish-title/finish-title.component';
-import { StepThreeCnComponent } from './final/step-three-cn/step-three-cn.component';
+import { LoginModule } from './login/login.module';
+import { ReservasModule } from './reservas/reservas.module';
 
 @NgModule({
   declarations: [
@@ -22,17 +15,8 @@ import { StepThreeCnComponent } from './final/step-three-cn/step-three-cn.compon
     ContainerComponent,
     MainComponent,
     FormComponent,
-    FormHabitacionesComponent,
-    StepOneCnComponent,
-    StepTwoCnComponent,
-    StepThreeCnComponent,
-    TitleComponent,
-    TitleFormComponent,
-    AvailablesComponent,
-    CarrouselComponent,
-    FinishTitleComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, LoginModule, ReservasModule],
   providers: [],
   bootstrap: [AppComponent],
 })
