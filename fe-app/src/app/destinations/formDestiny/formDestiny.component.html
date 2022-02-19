@@ -1,0 +1,41 @@
+<form class="row mt-3">
+  <div class="mb-3 col-md-12">
+    <label for="exampleInputEmail1" class="form-label">Nombre colegio</label>
+    <input
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+    />
+  </div>
+  <div class="mb-3 col-md-6">
+    <label for="exampleInputPassword1" class="form-label">Division</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" />
+  </div>
+  <div class="mb-3 col-md-6">
+    <label for="exampleInputPassword1" class="form-label">Turno</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Localidad</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" />
+  </div>
+  <div class="d-flex flex-column">
+    <div class="d-inline-flex justify-content-between mt-4">
+      <span>Año de viaje</span>
+      <div *ngFor="let item of date">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="fecha" />
+          <label class="form-check-label" for="inlineRadio1">{{ item }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row my-4">
+    <span class="form-label col-md-3">Cantidad de pasajeros del grupo</span>
+    <input type="number" class="form-control col ms-10" />
+  </div>
+  <div>
+    <button class="btn btn-secondary d-flex justify-content-start mt-5">Generar Codigo</button>
+  </div>
+</form>

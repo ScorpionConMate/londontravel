@@ -7,7 +7,7 @@ import { CodeToken } from '../models/code';
   providedIn: 'root',
 })
 export class CodeService {
-  baseUrl: string = environment.baseUrl + 'code/';
+  baseUrl: string = environment.baseUrl + 'code';
 
   constructor(private http: HttpClient) {}
 
