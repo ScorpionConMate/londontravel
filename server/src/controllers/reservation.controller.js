@@ -11,9 +11,8 @@ class ReservationController {
             const { user: staff } = req;
             const { destiny, school } = req.body;
             const reservation = await reservationService.create(staff, { destiny, school });
-            return res.status(201).json(reservation);
+            return res.status(200).json(reservation);
         } catch (e) {
-            console.log(e);
             return res.status(400).json({ error: e.message });
         }
     }
@@ -39,11 +38,27 @@ class ReservationController {
      */
     async getReservation(req, res) {
         try {
-            const { id } = req.params;
-            const reservation = await reservationService.findById(id);
+            const { id: code } = req.params;
+            const reservation = await reservationService.findByCode(code);
+
             return res.status(200).json(reservation);
         } catch (e) {
-            console.log(e);
+            return res.status(400).json({ error: e.message });
+        }
+    }
+
+    async setRoom(req, res) {
+        const {
+            fullName,
+            instagram
+        } = req.body;
+
+        const { roomId } = req.params;
+
+        try {
+            await reservationService.setUsersRoom(roomId, fullName, instagram);
+            return res.sendStatus(204);
+        } catch (e) {
             return res.status(400).json({ error: e.message });
         }
     }

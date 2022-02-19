@@ -1,7 +1,9 @@
 import destinationService from './destination.service.js';
 import reservationModel from '../models/reservation.model.js';
-import schoolModel from '../models/school.model.js';
+import mongoose from 'mongoose';
+import { ObjectId } from 'mongodb';
 import schoolService from './school.service.js';
+import SchoolModel from '../models/school.model.js';
 class ReservationService {
 
     async create(user, destiny) {
@@ -12,19 +14,76 @@ class ReservationService {
             staff: user._id,
         });
 
-        const schoolCreate = await schoolService.create(school, reservation._id);
+        await schoolService.create(school, reservation._id);
 
-        return { reservation, school: schoolCreate };
-    }
+        return { code: reservation.code }
+    };
 
     async findByStaff(staff) {
-        const reservations = await reservationModel.find({ staff: staff._id });
+        const aggregate = [
+            {
+                '$match': {
+                    'staff': mongoose.Types.ObjectId(staff._id)
+                }
+            }, {
+                '$lookup': {
+                    'from': 'schools',
+                    'localField': '_id',
+                    'foreignField': 'reservation',
+                    'as': 'school'
+                }
+            }, {
+                '$unwind': {
+                    'path': '$school',
+                    'preserveNullAndEmptyArrays': false
+                }
+            }, {
+                '$project': {
+                    'school.rooms': 0
+                }
+            }
+        ]
+        const reservations = await reservationModel.aggregate(aggregate).exec();
         return reservations;
     }
 
-    async findById(id) {
-        const reservation = await reservationModel.findById(id);
+    async findByCode(id) {
+        const reservation = await reservationModel.findOne({
+            "code": id
+        });
+
         return reservation;
+    }
+
+    async setUsersRoom(roomId, fullName, instagram) {
+        try {
+            const room = await SchoolModel.findOne({
+                "rooms._id": roomId,
+            });
+            const tmpRoom = room.rooms.find(r => r._id == roomId);
+            // TODO: parametrize max room size globally
+            if (tmpRoom.passengers.length >= 4) {
+                throw new Error('Room is full');
+            }
+            await SchoolModel.updateOne({
+                "rooms._id": roomId
+            }, {
+                $push: {
+                    "rooms.$.passengers": {
+                        'fullName': fullName,
+                        "instagram": instagram
+                    }
+                }
+            });
+
+            await SchoolModel.findByIdAndUpdate(room._id, {
+                "$inc": {
+                    "passengersLeft": -1
+                }
+            });
+        } catch (error) {
+            throw new Error(error.message);
+        }
     }
 }
 

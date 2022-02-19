@@ -6,7 +6,7 @@ class SchoolService {
 
     async findSchoolsByReservations(staff) {
         const reservations = await reservationService.findByStaff(staff);
-        return schoolModel.find({ reservation: { $in: reservations } });
+        return reservations;
     }
 
     async create(school, reservation) {
@@ -15,13 +15,13 @@ class SchoolService {
             {
                 ...school,
                 reservation,
-                rooms: this.setRooms(passengersQuantity),
+                rooms: this.setRoomsEmptyArray(passengersQuantity),
             });
 
         return createdSchool;
     }
 
-    setRooms(passengersQuantity) {
+    setRoomsEmptyArray(passengersQuantity) {
         return Array.from(Array(roundMultiple(passengersQuantity) / 4), (v, k) => {
             return {
                 passengers: [],
@@ -29,20 +29,6 @@ class SchoolService {
                 roomNumber: k + 1,
             }
         });
-    }
-
-    async setUserRoom({ fullName, instagram }, room) {
-        const { passengers } = room;
-        const newPassenger = {
-            fullName,
-            instagram,
-        };
-        const newPassengers = passengers.concat(newPassenger);
-        const newRoom = {
-            ...room,
-            passengers: newPassengers,
-        };
-        return newRoom;
     }
 }
 
