@@ -85,6 +85,31 @@ class ReservationService {
             throw new Error(error.message);
         }
     }
+
+
+    async getRoomsByReservation(code) {
+        const aggregate = [
+            {
+                '$match': {
+                    'code': code
+                }
+            }, {
+                '$lookup': {
+                    'from': 'schools',
+                    'localField': '_id',
+                    'foreignField': 'reservation',
+                    'as': 'school'
+                }
+            }, {
+                '$unwind': {
+                    'path': '$school',
+                    'preserveNullAndEmptyArrays': false
+                }
+            }
+        ];
+        const reservations = await reservationModel.aggregate(aggregate).exec();
+        return reservations;
+    }
 }
 
 export default new ReservationService();
