@@ -6,4 +6,6 @@ const router = Router();
 router.post('/', [isAuth, isStaff], reservationController.createCode);
 router.get('/my-reservations', [isAuth, isStaff], reservationController.myReservations);
 router.get('/:id', [isAuth, isStaff], reservationController.getReservation);
+router.put('/set-room/:roomId', reservationController.setRoom);
+
 export default router;

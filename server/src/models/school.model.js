@@ -34,6 +34,9 @@ const schoolSchema = new Schema({
         type: Number,
         required: true,
     },
+    passengersLeft: {
+        type: Number,
+    },
     reservation: {
         type: Schema.Types.ObjectId,
         ref: 'Reservation',
@@ -59,6 +62,7 @@ const schoolSchema = new Schema({
 schoolSchema.pre('save', async function (next) {
     const school = this;
     school.passengersQuantity = roundMultiple(school.passengersQuantity);
+    school.passengersLeft = school.passengersQuantity;
     next();
 })
 
