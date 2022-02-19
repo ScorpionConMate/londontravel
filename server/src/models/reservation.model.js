@@ -8,7 +8,7 @@ const reservationSchema = new Schema({
         type: String,
         unique: true,
     },
-    destiny:{
+    destiny: {
         type: Schema.Types.ObjectId,
         ref: 'Destination',
     },
@@ -16,18 +16,16 @@ const reservationSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
     },
-    passengersQuantity: {
-        type: Number,
-    }
 });
 
 
 reservationSchema.pre(
     "save",
-    async function(next) {
+    async function (next) {
         const reservation = this;
         reservation.code = generateRandomNumber(7);
+        this.passengersLeft = reservation.passengersQuantity;
         next();
-});
+    });
 
 export default mongoose.model('Reservation', reservationSchema);
