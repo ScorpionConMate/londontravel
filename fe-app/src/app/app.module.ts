@@ -10,6 +10,8 @@ import { LoginModule } from './staff/login.module';
 import { ReservasModule } from './reservas/reservas.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DestinationsModule } from './destinations/destinations.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,11 @@ import { DestinationsModule } from './destinations/destinations.module';
     ReactiveFormsModule,
     DestinationsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

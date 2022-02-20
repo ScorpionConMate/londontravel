@@ -6,7 +6,7 @@ export interface User {
     role: string;
 }
 
-export interface UserRegister {
+export interface UserLogin {
     username: string;
     password: string;
 }

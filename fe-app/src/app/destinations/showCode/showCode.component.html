@@ -1,0 +1,21 @@
+<div class="mt-5 pt-5">
+  <h1>
+    Tu codigo es <br />
+    <span class="text-primary">{{ codigo }}</span>
+  </h1>
+  <div class="mt-3 pt-3 d-flex flex-column">
+    <a href="#!">
+      <i class="fs-1 bi bi-share-fill">
+        <br />
+      </i>
+    </a>
+  </div>
+  <div>
+    <span class="fw-bold fs-3">Compartir</span>
+  </div>
+</div>
+<div class="mt-5 pt-5">
+  <a class="text-decoration-none" (click)="removeCode()" [routerLink]="['/destinations']">Volver al inicio</a>
+  <br>
+  <a class="text-decoration-none" (click)="removeToken()" [routerLink]="['/staff']">Salir</a>
+</div>

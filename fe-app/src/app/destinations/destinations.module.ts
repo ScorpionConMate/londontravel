@@ -5,14 +5,17 @@ import { DestinyRoutingModule } from './destinations.routing';
 import { ContainerDestinyComponent } from './containerDestiny/containerDestiny.component';
 import { HeaderComponent } from './header/header.component';
 import { FormDestinyComponent } from './formDestiny/formDestiny.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ShowCodeComponent } from './showCode/showCode.component';
 
 @NgModule({
-  imports: [CommonModule, DestinyRoutingModule],
+  imports: [CommonModule, DestinyRoutingModule, ReactiveFormsModule],
   declarations: [
     DestinationsComponent,
     ContainerDestinyComponent,
     HeaderComponent,
     FormDestinyComponent,
+    ShowCodeComponent
   ],
 })
 export class DestinationsModule {}
