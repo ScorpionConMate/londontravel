@@ -1,15 +1,15 @@
 import destinationService from './destination.service.js';
-import reservationModel from '../models/reservation.model.js';
+import { ReservationModel } from '../models/reservation.model.js';
 import mongoose from 'mongoose';
 import { ObjectId } from 'mongodb';
 import schoolService from './school.service.js';
-import SchoolModel from '../models/school.model.js';
+import { SchoolModel } from '../models/school.model.js';
 class ReservationService {
 
     async create(user, destiny) {
         const { school } = destiny;
         const destinySlug = await destinationService.findBySlug(destiny.destiny)
-        const reservation = await reservationModel.create({
+        const reservation = await ReservationModel.create({
             destiny: destinySlug._id,
             staff: user._id,
         });
@@ -43,12 +43,12 @@ class ReservationService {
                 }
             }
         ]
-        const reservations = await reservationModel.aggregate(aggregate).exec();
+        const reservations = await ReservationModel.aggregate(aggregate).exec();
         return reservations;
     }
 
     async findByCode(id) {
-        const reservation = await reservationModel.findOne({
+        const reservation = await ReservationModel.findOne({
             "code": id
         });
 
@@ -107,7 +107,7 @@ class ReservationService {
                 }
             }
         ];
-        const reservations = await reservationModel.aggregate(aggregate).exec();
+        const reservations = await ReservationModel.aggregate(aggregate).exec();
         return reservations;
     }
 }

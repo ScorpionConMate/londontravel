@@ -1,8 +1,8 @@
-import destinationModel from '../models/destination.model.js';
+import { DestinationModel } from '../models/destination.model.js';
 
 class DestinationRepository {
     async findBySlug(slug) {
-        const destination = await destinationModel.findOne({ slug });
+        const destination = await DestinationModel.findOne({ slug });
         if (!destination) {
             throw new Error('Destination not found');
         }
