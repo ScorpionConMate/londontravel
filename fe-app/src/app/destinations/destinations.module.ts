@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { FormDestinyComponent } from './formDestiny/formDestiny.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShowCodeComponent } from './showCode/showCode.component';
+import { ShowPaxComponent } from './ShowPax/ShowPax.component';
 
 @NgModule({
   imports: [CommonModule, DestinyRoutingModule, ReactiveFormsModule],
@@ -15,7 +16,8 @@ import { ShowCodeComponent } from './showCode/showCode.component';
     ContainerDestinyComponent,
     HeaderComponent,
     FormDestinyComponent,
-    ShowCodeComponent
+    ShowCodeComponent,
+    ShowPaxComponent
   ],
 })
 export class DestinationsModule {}

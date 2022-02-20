@@ -3,6 +3,6 @@ export interface School {
     turn: string;
     division: string;
     location: string;
-    travelYear: number;
+    travelYear?: number;
     passengersQuantity: number;
 }

@@ -19,6 +19,16 @@ const routes: Routes = [
       showCode: true,
     },
   },
+  {
+    path: 'showPax',
+    component: ContainerDestinyComponent,
+    canLoad: [AuthGuard],
+    data: {
+      title: 'Lista de pasajeros',
+      showCode: false,
+      showPax: true,
+    },
+  }
 ];
 
 @NgModule({

@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent implements OnInit {
 
   showCode: boolean = false;
+  showPax: boolean = false;
 
   name = {
     first: '',
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit {
 
     this.activatedRoute.data.subscribe((data) => {
       this.showCode = data['showCode'];
+      this.showPax = data['showPax'];
     });
 
     this.name.first = this.Auth.infoSession().firstName
