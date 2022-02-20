@@ -32,7 +32,15 @@ export class ShowPaxComponent implements OnInit {
       });
       return this.schools;
     });
-
-    
   }
+
+  removeCode() {
+    sessionStorage.removeItem('code');
+  }
+
+  removeToken() {
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('code');
+  }
+
 }
