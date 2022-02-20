@@ -1,9 +1,9 @@
-import destinationModel from '../models/destination.model.js';
+import { DestinationModel } from '../models/destination.model.js';
 import destinationRepository from '../repositories/destination.repository.js';
 class DestinationService {
     async save(destination) {
-        const { name, colorName, backgroundColor} = destination;
-        return await destinationModel.create({name, colorName, backgroundColor});
+        const { name, colorName, backgroundColor } = destination;
+        return await DestinationModel.create({ name, colorName, backgroundColor });
     }
 
     async findBySlug(slug) {

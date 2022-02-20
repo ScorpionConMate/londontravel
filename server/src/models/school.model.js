@@ -66,5 +66,5 @@ schoolSchema.pre('save', async function (next) {
     next();
 })
 
-const SchoolModel = mongoose.model('School', schoolSchema);
-export default SchoolModel;
+export const SchoolModel = mongoose.model('School', schoolSchema);
+

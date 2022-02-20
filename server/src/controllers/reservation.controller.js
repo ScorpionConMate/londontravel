@@ -62,6 +62,17 @@ class ReservationController {
             return res.status(400).json({ error: e.message });
         }
     }
+
+    async getRoomsByReservation(req, res) {
+        const { code } = req.params;
+
+        try {
+            const rooms = await reservationService.getRoomsByReservation(code);
+            return res.status(200).json(rooms);
+        } catch (e) {
+            return res.status(400).json({ error: e.message });
+        }
+    }
 }
 
 export default new ReservationController();

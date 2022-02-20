@@ -28,4 +28,4 @@ reservationSchema.pre(
         next();
     });
 
-export default mongoose.model('Reservation', reservationSchema);
+export const ReservationModel = mongoose.model('Reservation', reservationSchema);
