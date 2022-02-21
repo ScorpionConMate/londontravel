@@ -77,7 +77,7 @@ class ReservationService {
             });
 
             await SchoolModel.findByIdAndUpdate(room._id, {
-                "$inc": {
+                $inc: {
                     "passengersLeft": -1
                 }
             });

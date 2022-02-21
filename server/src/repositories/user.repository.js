@@ -32,6 +32,10 @@ class UserRepository {
         const compare = compareSync(password, user.password);
         return compare;
     }
+
+    async findByUserName(username) {
+        return await UserModel.findOne({ username: username });
+    }
 }
 
 export default new UserRepository();

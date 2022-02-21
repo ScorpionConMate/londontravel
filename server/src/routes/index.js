@@ -6,6 +6,7 @@ import reservations from './reservation.route.js';
 import { isAdmin, isAuth } from '../middlewares/auth.middleware.js';
 
 const router = Router();
+
 router.use('/users', users);
 router.use('/auth', auth);
 router.use('/destinations', destinations);
