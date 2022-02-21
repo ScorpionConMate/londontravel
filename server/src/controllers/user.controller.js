@@ -1,4 +1,4 @@
-import userService from '../services/user.service.js';
+const userService = require('../services/user.service.js');
 
 class UserController {
 
@@ -15,7 +15,7 @@ class UserController {
                 message: error.message
             });
         }
-        
+
     }
 
     /**
@@ -45,7 +45,7 @@ class UserController {
      */
     async findOne(req, res) {
         try {
-            const {id} = req.params;
+            const { id } = req.params;
             const user = await userService.findOne(id);
             return res.json(user);
         } catch (error) {
@@ -56,4 +56,4 @@ class UserController {
     }
 }
 
-export default new UserController();
+module.exports = new UserController();

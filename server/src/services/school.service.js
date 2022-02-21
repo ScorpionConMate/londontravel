@@ -1,6 +1,6 @@
-import { SchoolModel } from '../models/school.model.js';
-import { roundMultiple } from '../utils/random.util.js';
-import reservationService from './reservation.service.js';
+const { SchoolModel } = require('../models/school.model.js');
+const { roundMultiple } = require('../utils/random.util.js');
+const reservationService = require('./reservation.service.js');
 
 class SchoolService {
 
@@ -32,4 +32,4 @@ class SchoolService {
     }
 }
 
-export default new SchoolService();
+module.exports = new SchoolService();

@@ -1,9 +1,14 @@
-import mongoose from 'mongoose';
-import { Roles } from '../utils/roles.util.js';
-import { compareSync, hash } from 'bcrypt';
+const mongoose = require('mongoose');
+const { Roles } = require('../utils/roles.util.js');
+const { compareSync, hash } = require('bcrypt');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
     username: {
         type: String,
         required: true,
@@ -49,5 +54,6 @@ userSchema.methods.isValidPassword = function (password) {
 userSchema.methods.isAdmin = function () {
     return this.role === Roles.ADMIN;
 }
-export const UserModel = mongoose.model('User', userSchema);
+const UserModel = mongoose.model('User', userSchema);
 
+module.exports = { UserModel };

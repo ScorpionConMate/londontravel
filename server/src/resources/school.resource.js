@@ -1,4 +1,4 @@
-import { SchoolModel } from '../models/school.model.js';
+const { SchoolModel } = require('../models/school.model.js');
 
 /**
  * @typedef {import('adminjs').ResourceWithOptions} ResourceOptions
@@ -9,7 +9,8 @@ import { SchoolModel } from '../models/school.model.js';
  * @type {ResourceOptions}
  * 
  */
-export const SchoolResource = {
+const SchoolResource = {
     resource: SchoolModel,
     options: {}
 };
+module.exports = { SchoolResource };

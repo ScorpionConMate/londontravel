@@ -1,5 +1,8 @@
-export const Roles = {
+const Roles = {
     ADMIN: 'admin',
-    USER: 'user',
     STAFF: 'staff',
+}
+
+module.exports = {
+    Roles
 }

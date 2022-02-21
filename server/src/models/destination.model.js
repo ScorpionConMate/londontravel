@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import slugify from 'slugify';
+const mongoose = require('mongoose');
+const slugify = require('slugify');
 const { Schema } = mongoose;
 
 const destinationSchema = new Schema({
@@ -36,4 +36,6 @@ destinationSchema.pre(
     }
 )
 
-export const DestinationModel = mongoose.model('Destination', destinationSchema);
+const DestinationModel = mongoose.model('Destination', destinationSchema);
+
+module.exports = { DestinationModel };

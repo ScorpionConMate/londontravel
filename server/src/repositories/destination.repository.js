@@ -1,4 +1,4 @@
-import { DestinationModel } from '../models/destination.model.js';
+const { DestinationModel } = require('../models/destination.model.js');
 
 class DestinationRepository {
     async findBySlug(slug) {
@@ -14,4 +14,4 @@ class DestinationRepository {
     }
 }
 
-export default new DestinationRepository();
+module.exports = new DestinationRepository();

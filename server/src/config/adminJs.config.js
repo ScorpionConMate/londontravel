@@ -1,13 +1,13 @@
-import AdminJS from 'adminjs';
-
-import userRepository from '../repositories/user.repository.js';
-import { AdminJsResources } from '../resources/index.js';
+const userRepository = require('../repositories/user.repository.js');
+const { AdminJsResources } = require('../resources/index.js');
+const AdminJS = require('adminjs');
+const { Roles } = require('../utils/roles.util.js');
 /**
  * @typedef {import('adminjs').AdminJSOptions} AdminJSOptions
  * @typedef {import('@adminjs/express').AuthenticationOptions} AuthenticationOptions
  * @type {AdminJSOptions}
  */
-export const AdminJsConfig = {
+const AdminJsConfig = {
     resources: AdminJsResources,
     rootPath: '/admin',
     version: {
@@ -19,22 +19,33 @@ export const AdminJsConfig = {
         logo: 'http://www.londontravel.com.ar/images/LondonBlackldpi-p-500.png',
         softwareBrothers: false,
     },
+    dashboard: {
+        handler: async () => {
+            return { some: 'output' }
+        },
+        component: AdminJS.bundle('../../components/Dashboard/index'),
+    },
 };
 
 /**
  * @type {AuthenticationOptions}
  */
-export const AuthenticationOptions = {
+const AuthenticationOptions = {
     authenticate: async (username, password) => {
-        console.log({ username, password });
-        const user = await userRepository.findForLogin(username);
+
+        const user = await userRepository.findByEmail(username);
         if (user) {
-            const matched = await userRepository.validatePassword(user, password);
+            const matched = await user.isValidPassword(password);
             if (matched) {
-                return user;
+                return user.role === Roles.ADMIN;
             }
         }
         return false;
     },
     cookiePassword: 'adminjs-auth-password'
+}
+
+module.exports = {
+    AdminJsConfig,
+    AuthenticationOptions
 }
