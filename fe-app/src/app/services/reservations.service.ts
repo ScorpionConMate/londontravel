@@ -17,4 +17,12 @@ export class ReservationsService {
       },
     });
   }
+
+  getMyRooms(token: string, code: string) {
+    return this.http.get(this.baseUrl + code + '/get-rooms', {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    });
+  }
 }

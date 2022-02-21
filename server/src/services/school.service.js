@@ -1,4 +1,4 @@
-import schoolModel from '../models/school.model.js';
+import { SchoolModel } from '../models/school.model.js';
 import { roundMultiple } from '../utils/random.util.js';
 import reservationService from './reservation.service.js';
 
@@ -11,7 +11,7 @@ class SchoolService {
 
     async create(school, reservation) {
         const { passengersQuantity } = school;
-        const createdSchool = await schoolModel.create(
+        const createdSchool = await SchoolModel.create(
             {
                 ...school,
                 reservation,

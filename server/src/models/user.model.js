@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import {Roles} from '../utils/roles.util.js';
+import { Roles } from '../utils/roles.util.js';
 import { compareSync, hash } from 'bcrypt';
 const { Schema } = mongoose;
 
@@ -31,24 +31,23 @@ const userSchema = new Schema({
 
 userSchema.pre(
     "save",
-    async function(next) {
+    async function (next) {
         const user = this;
         const hashed = await hash(user.password, 10);
         this.password = hashed;
-        
+
         next();
     }
 )
 
-userSchema.methods.isValidPassword = function(password) {
+userSchema.methods.isValidPassword = function (password) {
     const user = this;
     const compare = compareSync(password, user.password);
     return compare;
 }
 
-userSchema.methods.isAdmin = function() {
+userSchema.methods.isAdmin = function () {
     return this.role === Roles.ADMIN;
 }
+export const UserModel = mongoose.model('User', userSchema);
 
-const UserModel = mongoose.model('User', userSchema);
-export default UserModel;

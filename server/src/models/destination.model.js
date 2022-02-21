@@ -28,12 +28,12 @@ const destinationSchema = new Schema({
 
 destinationSchema.pre(
     "save",
-    async function(next) {
+    async function (next) {
         const destination = this;
-        const slug = slugify(destination.name, {lower: true, replacement: ''});
+        const slug = slugify(destination.name, { lower: true, replacement: '' });
         this.slug = slug;
         next();
     }
 )
 
-export default mongoose.model('Destination', destinationSchema);
+export const DestinationModel = mongoose.model('Destination', destinationSchema);

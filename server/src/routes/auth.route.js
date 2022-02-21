@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 
@@ -7,14 +7,14 @@ const router = Router();
 router.post('/login', async (req, res, next) => {
     passport.authenticate('login', async (err, user, info) => {
         try {
-            if(err | !user){
+            if (err | !user) {
                 const error = new Error('An Error Occurred');
-                return next(error);
+                return res.status(500).json({ error: error.message });
             }
-            
-            req.login(user, {session: false}, async (error) => {
+
+            req.login(user, { session: false }, async (error) => {
                 if (error) return next(error);
-                
+
                 const payload = {
                     user: {
                         _id: user._id,
@@ -25,7 +25,7 @@ router.post('/login', async (req, res, next) => {
                     }
                 }
                 const token = jwt.sign(payload, process.env.JWT_TOKEN);
-                return res.json({token, user: payload.user});
+                return res.json({ token, user: payload.user });
             });
 
         } catch (error) {
