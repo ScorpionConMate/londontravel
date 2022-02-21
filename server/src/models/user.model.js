@@ -38,7 +38,7 @@ userSchema.pre(
 
         next();
     }
-)
+);
 
 userSchema.methods.isValidPassword = function (password) {
     const user = this;
