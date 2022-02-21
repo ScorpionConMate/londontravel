@@ -1,4 +1,4 @@
-import { DestinationModel } from '../models/destination.model.js';
+const { DestinationModel } = require('../models/destination.model.js');
 
 /**
  * @typedef {import('adminjs').ResourceWithOptions} ResourceOptions
@@ -7,7 +7,7 @@ import { DestinationModel } from '../models/destination.model.js';
 /**
  * @type {ResourceOptions}
  */
-export const DestinationResource = {
+const DestinationResource = {
     resource: DestinationModel,
     options: {
         properties: {
@@ -33,4 +33,6 @@ export const DestinationResource = {
             }
         },
     }
-}
+};
+
+module.exports = { DestinationResource };

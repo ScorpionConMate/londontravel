@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import users from './user.route.js';
-import auth from './auth.route.js';
-import destinations from './destination.route.js';
-import reservations from './reservation.route.js';
-import { isAdmin, isAuth } from '../middlewares/auth.middleware.js';
+const { Router } = require('express');
+const users = require('./user.route.js');
+const auth = require('./auth.route.js');
+const destinations = require('./destination.route.js');
+const reservations = require('./reservation.route.js');
+const { isAdmin, isAuth } = require('../middlewares/auth.middleware.js');
 
 const router = Router();
 
@@ -14,5 +14,6 @@ router.use('/reservations', reservations);
 
 router.get('/test', [isAuth, isAdmin], (req, res) => {
     res.send('test');
-})
-export default router;
+});
+
+module.exports = router;

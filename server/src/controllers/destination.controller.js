@@ -1,4 +1,4 @@
-import destinationService from '../services/destination.service.js'
+const destinationService = require('../services/destination.service.js');
 class DestinationController {
     /**
      * 
@@ -16,4 +16,4 @@ class DestinationController {
     }
 }
 
-export default new DestinationController()
+module.exports = new DestinationController()

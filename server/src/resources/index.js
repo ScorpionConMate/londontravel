@@ -1,12 +1,14 @@
-import { DestinationResource } from './destination.resource.js';
-import { ReservationResource } from './reservation.resource.js';
-import { SchoolResource } from './school.resource.js';
-import { UserResource } from './user.resource.js';
+const { DestinationResource } = require('./destination.resource.js');
+const { ReservationResource } = require('./reservation.resource.js');
+const { SchoolResource } = require('./school.resource.js');
+const { UserResource } = require('./user.resource.js');
 
 
-export const AdminJsResources = [
+const AdminJsResources = [
     UserResource,
     ReservationResource,
     DestinationResource,
     SchoolResource
 ];
+
+module.exports = { AdminJsResources };

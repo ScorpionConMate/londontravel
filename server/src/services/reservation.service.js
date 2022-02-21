@@ -1,9 +1,8 @@
-import destinationService from './destination.service.js';
-import { ReservationModel } from '../models/reservation.model.js';
-import mongoose from 'mongoose';
-import { ObjectId } from 'mongodb';
-import schoolService from './school.service.js';
-import { SchoolModel } from '../models/school.model.js';
+const destinationService = require('./destination.service.js');
+const { ReservationModel } = require('../models/reservation.model.js');
+const mongoose = require('mongoose');
+const schoolService = require('./school.service.js');
+const { SchoolModel } = require('../models/school.model.js');
 class ReservationService {
 
     async create(user, destiny) {
@@ -112,4 +111,4 @@ class ReservationService {
     }
 }
 
-export default new ReservationService();
+module.exports = new ReservationService();

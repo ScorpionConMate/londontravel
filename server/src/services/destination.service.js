@@ -1,5 +1,5 @@
-import { DestinationModel } from '../models/destination.model.js';
-import destinationRepository from '../repositories/destination.repository.js';
+const { DestinationModel } = require('../models/destination.model.js');
+const destinationRepository = require('../repositories/destination.repository.js');
 class DestinationService {
     async save(destination) {
         const { name, colorName, backgroundColor } = destination;
@@ -15,4 +15,4 @@ class DestinationService {
     }
 }
 
-export default new DestinationService()
+module.exports = new DestinationService()

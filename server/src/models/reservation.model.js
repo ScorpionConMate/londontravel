@@ -1,6 +1,5 @@
-import mongoose from 'mongoose';
-import { getCurrentYearAndPlus } from '../utils/date.util.js';
-import { generateRandomNumber, roundMultiple } from '../utils/random.util.js';
+const mongoose = require('mongoose');
+const { generateRandomNumber } = require('../utils/random.util.js');
 const { Schema } = mongoose;
 
 const reservationSchema = new Schema({
@@ -28,4 +27,6 @@ reservationSchema.pre(
         next();
     });
 
-export const ReservationModel = mongoose.model('Reservation', reservationSchema);
+const ReservationModel = mongoose.model('Reservation', reservationSchema);
+
+module.exports = { ReservationModel };

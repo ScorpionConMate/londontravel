@@ -1,5 +1,5 @@
-import reservationService from '../services/reservation.service.js';
-import schoolService from '../services/school.service.js';
+const reservationService = require('../services/reservation.service.js');
+const schoolService = require('../services/school.service.js');
 
 class ReservationController {
     /**
@@ -75,4 +75,4 @@ class ReservationController {
     }
 }
 
-export default new ReservationController();
+module.exports = new ReservationController();

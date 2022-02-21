@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import { getCurrentYearAndPlus } from '../utils/date.util.js';
-import { roundMultiple } from '../utils/random.util.js';
+const mongoose = require('mongoose');
+const { getCurrentYearAndPlus } = require('../utils/date.util.js');
+const { roundMultiple } = require('../utils/random.util.js');
 const { Schema } = mongoose;
 
 const schoolSchema = new Schema({
@@ -66,5 +66,6 @@ schoolSchema.pre('save', async function (next) {
     next();
 })
 
-export const SchoolModel = mongoose.model('School', schoolSchema);
+const SchoolModel = mongoose.model('School', schoolSchema);
 
+module.exports = { SchoolModel };

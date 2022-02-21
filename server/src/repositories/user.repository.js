@@ -1,5 +1,6 @@
-import { UserModel } from '../models/user.model.js';
-import { compareSync, hash } from 'bcrypt';
+const { UserModel } = require('../models/user.model.js');
+const { compareSync, hash } = require('bcrypt');
+const fs = require('fs');
 class UserRepository {
     async find() {
         return UserModel.find();
@@ -33,9 +34,25 @@ class UserRepository {
         return compare;
     }
 
-    async findByUserName(username) {
-        return await UserModel.findOne({ username: username });
+    async findByEmail(email) {
+        return await UserModel.findOne({ email }).select('+password');
+    }
+
+    async createDefaultAdmin() {
+        const usersFile = await fs.promises.readFile('defaultUsers.json', {
+            encoding: 'utf-8'
+        });
+        const users = JSON.parse(usersFile.toString())
+
+        for (const user of users) {
+            if (!(await this.findByEmail(user.email))) {
+                await UserModel.create(user);
+                console.log(`Default user with Role: ${user.role} created`);
+            } else {
+                console.log(`Default user with Role: ${user.role} already exists`);
+            }
+        }
     }
 }
 
-export default new UserRepository();
+module.exports = new UserRepository();

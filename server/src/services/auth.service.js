@@ -1,10 +1,10 @@
 // @ts-check
-import passport from 'passport';
-import { Strategy } from 'passport-local';
-import userRepository from '../repositories/user.repository.js';
-import JwtStrategy from 'passport-jwt';
-import { ExtractJwt } from 'passport-jwt';
-import { config } from 'dotenv';
+const passport = require('passport');
+const { Strategy } = require('passport-local');
+const userRepository = require('../repositories/user.repository.js');
+const JwtStrategy = require('passport-jwt');
+const { ExtractJwt } = require('passport-jwt');
+const { config } = require('dotenv');
 config();
 const JWTStrategy = JwtStrategy.Strategy;
 

@@ -1,7 +1,7 @@
 // @ts-check
-import { UserModel } from '../models/user.model.js';
-import { Roles } from '../utils/roles.util.js';
-import { compareSync, hash } from 'bcrypt';
+const { UserModel } = require('../models/user.model.js');
+const { Roles } = require('../utils/roles.util.js');
+const { hash } = require('bcrypt');
 
 /**
  * @typedef {import('adminjs').ResourceWithOptions} ResourceOptions
@@ -10,7 +10,7 @@ import { compareSync, hash } from 'bcrypt';
 /**
  * @type {ResourceOptions}
  */
-export const UserResource = {
+const UserResource = {
     resource: UserModel,
     options: {
         listProperties: ['_id', 'firstName', 'lastName', 'username', 'role'],
@@ -39,3 +39,5 @@ export const UserResource = {
 
     },
 }
+
+module.exports = { UserResource };
