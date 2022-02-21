@@ -1,9 +1,10 @@
-import userRepository from '../repositories/user.repository.js';
-import { Roles } from '../utils/roles.util.js';
-import passport from 'passport';
-export const isAuth = passport.authenticate('jwt', { session: false });
+const userRepository = require('../repositories/user.repository.js');
+const { Roles } = require('../utils/roles.util.js');
+const passport = require('passport');
 
-export const isAdmin = async (req, res, next) => {
+const isAuth = passport.authenticate('jwt', { session: false });
+
+const isAdmin = async (req, res, next) => {
     const { user } = req;
 
     const findedUser = await userRepository.findOne(user._id);
@@ -14,7 +15,7 @@ export const isAdmin = async (req, res, next) => {
     return res.status(403).json({ message: 'Access denied' });
 }
 
-export const isStaff = async (req, res, next) => {
+const isStaff = async (req, res, next) => {
     const { user } = req;
 
     const findedUser = await userRepository.findOne(user._id);
@@ -23,4 +24,10 @@ export const isStaff = async (req, res, next) => {
         return next();
     }
     return res.status(403).json({ message: 'Access denied' });
+}
+
+module.exports = {
+    isAuth,
+    isAdmin,
+    isStaff
 }

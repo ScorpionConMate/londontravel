@@ -1,17 +1,15 @@
-import express from 'express';
-import cors from 'cors';
-import { config } from 'dotenv';
-import mongoose from 'mongoose';
-import AdminJS from 'adminjs';
-import AdminJSExpress from '@adminjs/express';
-import AdminJSMongoose from '@adminjs/mongoose';
-import routes from './routes/index.js';
-
-import { AdminJsConfig, AuthenticationOptions } from './config/adminJs.config.js';
-import adminjs from 'adminjs';
-
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+const mongoose = require('mongoose');
+const AdminJS = require('adminjs');
+const AdminJSExpress = require('@adminjs/express');
+const AdminJSMongoose = require('@adminjs/mongoose');
+const routes = require('./routes/index.js');
+const { AdminJsConfig, AuthenticationOptions } = require('./config/adminJs.config.js');
+require('./services/auth.service.js');
+const UserRepository = require('./repositories/user.repository');
 AdminJS.registerAdapter(AdminJSMongoose);
-config();
 mongoose.connect(
     process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -20,28 +18,18 @@ mongoose.connect(
 }).then(() => console.log('Connected to MongoDB'));
 
 const app = express();
-const adminJs = new AdminJS({
-    ...AdminJsConfig,
-    dashboard: {
-        handler: async () => {
-            return {
-                some: 'data'
-            }
-        },
-        component: AdminJS.bundle('./components/Dashboard/index.jsx'),
-    }
-});
-
-const router = AdminJSExpress.buildAuthenticatedRouter(adminJs, AuthenticationOptions);
-app.use(adminJs.options.rootPath, router)
 const port = process.env.SERVER_PORT;
 
 app.use(cors());
+
+const adminJs = new AdminJS(AdminJsConfig);
+
+const router = AdminJSExpress.buildAuthenticatedRouter(adminJs, AuthenticationOptions);
+
+app.use(adminJs.options.rootPath, router);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-await import('./services/auth.service.js');
 app.use((err, req, res, next) => {
     if (res.headersSent) {
         return next(err);
@@ -52,5 +40,7 @@ app.use((err, req, res, next) => {
 
 app.use('/api/v1/', routes);
 
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, async () => {
+    await UserRepository.createDefaultAdmin();
+    console.log(`Example app listening on port ${port}!`)
+});

@@ -2,7 +2,7 @@
  * @param {number} [length=6] Length of the random number
  * @returns {number} Random number with a length default is 6
  */
-export function generateRandomNumber(length=6) {
+function generateRandomNumber(length = 6) {
     return Math.floor(100000 + Math.random() * Number("9".padEnd(length, "0")));
 }
 
@@ -11,6 +11,11 @@ export function generateRandomNumber(length=6) {
  * @param {number} [multiple=4] to be rounded to the nearest multiple, default 4
  * @returns {number} rounded number
  */
-export function roundMultiple(num, multiple = 4) {
+function roundMultiple(num, multiple = 4) {
     return Math.round(num / multiple) * multiple;
+}
+
+module.exports = {
+    generateRandomNumber,
+    roundMultiple
 }
