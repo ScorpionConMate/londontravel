@@ -10,6 +10,10 @@ const { ReservationModel } = require('../models/reservation.model.js');
 const ReservationResource = {
     resource: ReservationModel,
     options: {
+        navigation: {
+            name: 'Admin',
+            icon: 'users',
+        },
         properties: {
             code: {
                 type: 'text',

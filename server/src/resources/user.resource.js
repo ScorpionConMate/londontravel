@@ -13,6 +13,10 @@ const { hash } = require('bcrypt');
 const UserResource = {
     resource: UserModel,
     options: {
+        navigation: {
+            name: 'Admin',
+            icon: 'users',
+        },
         listProperties: ['_id', 'firstName', 'lastName', 'username', 'role'],
         properties: {
             password: {

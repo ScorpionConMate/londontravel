@@ -1,7 +1,9 @@
 const userRepository = require('../repositories/user.repository.js');
 const { AdminJsResources } = require('../resources/index.js');
 const AdminJS = require('adminjs');
+
 const { Roles } = require('../utils/roles.util.js');
+
 /**
  * @typedef {import('adminjs').AdminJSOptions} AdminJSOptions
  * @typedef {import('@adminjs/express').AuthenticationOptions} AuthenticationOptions
@@ -25,6 +27,13 @@ const AdminJsConfig = {
         },
         component: AdminJS.bundle('../../components/Dashboard/index'),
     },
+    locale: {
+        translations: {
+            messages: {
+                loginWelcome: 'London Travel Administration panel - Login',
+            }
+        }
+    }
 };
 
 /**
@@ -32,16 +41,16 @@ const AdminJsConfig = {
  */
 const AuthenticationOptions = {
     authenticate: async (username, password) => {
-
         const user = await userRepository.findByEmail(username);
         if (user) {
             const matched = await user.isValidPassword(password);
             if (matched) {
-                return user.role === Roles.ADMIN;
+                return user.role === Roles.ADMIN ? user : false;
             }
         }
         return false;
     },
+
     cookiePassword: 'adminjs-auth-password'
 }
 

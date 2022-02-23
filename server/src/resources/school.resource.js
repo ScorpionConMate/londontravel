@@ -11,6 +11,11 @@ const { SchoolModel } = require('../models/school.model.js');
  */
 const SchoolResource = {
     resource: SchoolModel,
-    options: {}
+    options: {
+        navigation: {
+            name: 'Admin',
+            icon: 'users',
+        },
+    }
 };
 module.exports = { SchoolResource };

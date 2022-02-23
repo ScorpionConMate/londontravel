@@ -10,6 +10,10 @@ const { DestinationModel } = require('../models/destination.model.js');
 const DestinationResource = {
     resource: DestinationModel,
     options: {
+        navigation: {
+            name: 'Admin',
+            icon: 'users',
+        },
         properties: {
             slug: {
                 type: 'text',
