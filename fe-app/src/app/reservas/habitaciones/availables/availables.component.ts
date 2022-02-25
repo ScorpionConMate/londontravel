@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvailablesComponent implements OnInit {
 
-  groupOne: Array<string> = ["Juan Perez", "Peluchin Rodriguez", "Jonathan Dyallo"]
+  groupOne: Array<string> = ["Juan Perez", "Peluchin Rodriguez" , "Jonathan Dyallo", "Alan Rodriguez" ]
 
   roomsAvailable: Array<any> = [
     {

@@ -11,8 +11,4 @@ export class TitleComponent implements OnInit {
 
   ngOnInit() {}
 
-  message(texto: string) {
-    return texto;
-  }
-
 }

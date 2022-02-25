@@ -1,10 +1,5 @@
 .home {
-  background-image: radial-gradient(
-      circle,
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),
-    url("https://wallpapercave.com/wp/wp4709047.jpg");
   background-size: auto;
   background-position: center;
+  background-color: antiquewhite;
 }
