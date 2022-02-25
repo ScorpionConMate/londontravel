@@ -2,3 +2,6 @@
 node_modules
 dist
 defaultUsers.json
+Dockerfiles/.env
+mongo/*
+docker-compose-local.yml
