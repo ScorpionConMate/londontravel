@@ -3,3 +3,11 @@
 .titulo {
     font-size: 4rem;
 }
+
+.cards-text {
+    font-size: 1rem;
+
+    @media (min-width: 768px) {
+        font-size: 20px;
+    }
+}
