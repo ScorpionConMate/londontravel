@@ -5,3 +5,6 @@ defaultUsers.json
 Dockerfiles/.env
 mongo/*
 docker-compose-local.yml
+server/.env
+server/node_modules
+server/defaultUsers.json
