@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
+import { User, UserSession } from '../models/user';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -23,25 +24,20 @@ export class AuthService {
 
   private setSession(authResult: any) {
     localStorage.setItem('token', authResult.token);
-    this.router.navigate(['destinations']);
+    this.router.navigate(['staff/destinations']);
   }
 
-  // @ts-ignore
-  private getSession() {
-    if (localStorage.getItem('token')) {
-      return {
-        token: localStorage.getItem('token'),
-      };
-    }
+  private get token(){
+    return localStorage.getItem('token') ?? false;
+  }
+
+  private getSession(): UserSession {
+    // @ts-ignore
+    return this.token ? jwtDecode(this.token).user : false;
   }
 
   isLoggedIn() {
-    if (this.getSession()) {
-      // @ts-ignore
-      const expire: any = jwtDecode(this.getSession().token);
-      return moment().isAfter(expire.exp);
-    }
-    return false;
+    return !!this.getSession();
   }
 
   isLoggedOut() {
@@ -56,18 +52,14 @@ export class AuthService {
   }
 
   infoSession() {
-    if (this.getSession()) {
-      // @ts-ignore
-      const decoded: any = jwtDecode(this.getSession().token);
-      return decoded.user;
-    }
+    return this.getSession()
   }
 
   // @ts-ignore
   isAdmin() {
     if (this.getSession()) {
       const user = this.infoSession();
-      if (user.role === 'admin') {
+      if (user?.role === 'admin') {
         return true;
       }
       return false;

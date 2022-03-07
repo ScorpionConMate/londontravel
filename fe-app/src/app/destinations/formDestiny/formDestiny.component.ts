@@ -3,6 +3,8 @@ import { DestinyService } from 'src/app/services/destiny.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import getCurrentYearAndPlus from 'src/utils/date';
 import { School } from 'src/app/models/school';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-formDestiny',
   templateUrl: './formDestiny.component.html',
@@ -19,11 +21,18 @@ export class FormDestinyComponent implements OnInit {
   }
 
   payloadForm!: FormGroup;
+  destinies: any;
 
-  constructor(private service: DestinyService, private formBuilder: FormBuilder,) { }
+  constructor(
+    private service: DestinyService,
+    private formBuilder: FormBuilder,
+    private http: HttpClient
+    ) { }
 
   ngOnInit() {
+    this.getDestinies()
     this.payloadForm = new FormGroup({
+      destiny: new FormControl(null),
       colegio: new FormControl(null),
       division: new FormControl(null),
       turno: new FormControl(null),
@@ -39,7 +48,7 @@ export class FormDestinyComponent implements OnInit {
     event.preventDefault();
 
     const payload: {destiny: string, school: School} = {
-      destiny: "jurere",
+      destiny: this.payloadForm.value.destiny,
       school: {
        name: this.payloadForm.value.colegio,
        turn: this.payloadForm.value.turno,
@@ -56,6 +65,14 @@ export class FormDestinyComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+      }
+    );
+  }
+
+  async getDestinies(){
+    this.http.get(`${environment.baseUrl}/destinations`).subscribe(
+      (response: any) => {
+        this.destinies = response;
       }
     );
   }

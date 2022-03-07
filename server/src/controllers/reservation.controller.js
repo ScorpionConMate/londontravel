@@ -24,10 +24,12 @@ class ReservationController {
     async myReservations(req, res) {
         try {
             const { user: staff } = req;
+            console.log(staff);
             const schools = await schoolService.findSchoolsByReservations(staff);
 
             return res.status(200).json({ schools });
         } catch (e) {
+            console.log(e);
             return res.status(400).json({ error: e.message });
         }
     }

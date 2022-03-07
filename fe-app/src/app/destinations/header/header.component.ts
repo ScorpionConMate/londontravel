@@ -20,17 +20,21 @@ export class HeaderComponent implements OnInit {
   constructor(private Auth: AuthService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-
+    this.isMain()
     this.activatedRoute.data.subscribe((data) => {
       this.showCode = data['showCode'];
       this.showPax = data['showPax'];
     });
 
-    this.name.first = this.Auth.infoSession().firstName
-    this.name.last = this.Auth.infoSession().lastName
+    this.name.first = this.Auth.infoSession()?.firstName
+    this.name.last = this.Auth.infoSession()?.lastName
   }
 
   logout() {
     this.Auth.logout()
+  }
+
+  isMain(){
+    console.log(this.activatedRoute)
   }
 }

@@ -1,5 +1,16 @@
 <form [formGroup]="payloadForm" class="row mt-3">
   <div class="mb-3 col-md-12">
+    <label class="form-label" for="destiny">Selecciona un destino</label>
+    <select name="destiny" formControlName="destiny" class="form-control">
+      <option selected disabled>
+        Selecciona un destino
+      </option>
+      <option *ngFor="let destiny of destinies" [value]="destiny.slug">
+        {{ destiny.name }}
+      </option>
+    </select>
+  </div>
+  <div class="mb-3 col-md-12">
     <label class="form-label">Nombre colegio</label>
     <input type="text" class="form-control" formControlName="colegio" />
   </div>
@@ -25,12 +36,7 @@
       <span>Año de viaje</span>
       <div class="radio" *ngFor="let item of date">
         <label class="form-label" for="type">
-          <input
-            class="form-radio"
-            type="radio"
-            formControlName="fecha"
-            [value]="item"
-          />
+          <input class="form-radio" type="radio" formControlName="fecha" [value]="item" />
           {{ item }}
         </label>
       </div>
@@ -38,18 +44,11 @@
   </div>
   <div class="row my-4">
     <span class="form-label col-md-3">Cantidad de pasajeros del grupo</span>
-    <input
-      type="number"
-      class="form-control col ms-10"
-      formControlName="cantidad"
-    />
+    <input type="number" class="form-control col ms-10" formControlName="cantidad" />
   </div>
   <div>
-    <button
-      [routerLink]="['.', 'getCode']"
-      (click)="sendReservation($event)"
-      class="btn btn-secondary d-flex justify-content-start mt-5"
-    >
+    <button [routerLink]="['.', 'getCode']" (click)="sendReservation($event)"
+      class="btn btn-secondary d-flex justify-content-start mt-5">
       Generar Codigo
     </button>
   </div>

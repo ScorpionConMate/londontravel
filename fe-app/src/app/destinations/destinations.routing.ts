@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '../helpers/auth.guard';
+import { Authv2Guard } from '../helpers/authv2.guard';
 import { ContainerDestinyComponent } from './containerDestiny/containerDestiny.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ContainerDestinyComponent,
-    canLoad: [AuthGuard],
+    canLoad: [],
     data: { title: 'Destinos', showCode: false },
   },
   {
     path: 'getCode',
     component: ContainerDestinyComponent,
-    canLoad: [AuthGuard],
+    canLoad: [Authv2Guard],
     data: {
       title: 'Entrega de código',
       showCode: true,
@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: 'showPax',
     component: ContainerDestinyComponent,
-    canLoad: [AuthGuard],
+    canLoad: [Authv2Guard],
     data: {
       title: 'Lista de pasajeros',
       showCode: false,

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Authv2Guard } from './helpers/authv2.guard';
+import { DestinationGuard } from './helpers/destination.guard';
 import { ContainerComponent } from './home/container/container.component';
 
 const routes: Routes = [
   { path: '', component: ContainerComponent },
   { path: 'reservas', loadChildren: () => import('./reservas/reservas.module').then(m => m.ReservasModule) },
   { path: 'staff', loadChildren: () => import('./staff/login.module').then(m => m.LoginModule) },
-  { path: 'destinations', loadChildren: () => import('./destinations/destinations.module').then(m => m.DestinationsModule) },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

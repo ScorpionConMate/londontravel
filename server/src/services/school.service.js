@@ -1,11 +1,13 @@
 const { SchoolModel } = require('../models/school.model.js');
 const { roundMultiple } = require('../utils/random.util.js');
-const reservationService = require('./reservation.service.js');
+
+
 
 class SchoolService {
 
     async findSchoolsByReservations(staff) {
-        const reservations = await reservationService.findByStaff(staff);
+        const ReservationService = require('./reservation.service');
+        const reservations = await ReservationService.findByStaff(staff);
         return reservations;
     }
 

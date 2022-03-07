@@ -17,7 +17,7 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root',
 })
 export class AuthGuard
-  implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
+  implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
@@ -41,24 +41,6 @@ export class AuthGuard
     | boolean
     | UrlTree {
     return this.canActivate(next, state);
-  }
-  canDeactivate(
-    component: unknown,
-    currentRoute: ActivatedRouteSnapshot,
-    currentState: RouterStateSnapshot,
-    nextState?: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    return true;
-  }
-  canLoad(
-    route: Route,
-    segments: UrlSegment[]
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
   }
 
   checkUserLogin(route: ActivatedRouteSnapshot, url: any): boolean {

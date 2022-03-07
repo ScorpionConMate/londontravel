@@ -3,9 +3,10 @@ const { ReservationModel } = require('../models/reservation.model.js');
 const mongoose = require('mongoose');
 const schoolService = require('./school.service.js');
 const { SchoolModel } = require('../models/school.model.js');
-class ReservationService {
 
-    async create(user, destiny) {
+module.exports = {
+
+    create: async (user, destiny) => {
         const { school } = destiny;
         const destinySlug = await destinationService.findBySlug(destiny.destiny)
         const reservation = await ReservationModel.create({
@@ -16,9 +17,9 @@ class ReservationService {
         await schoolService.create(school, reservation._id);
 
         return { code: reservation.code }
-    };
+    },
 
-    async findByStaff(staff) {
+    findByStaff: async (staff) => {
         const aggregate = [
             {
                 '$match': {
@@ -44,17 +45,17 @@ class ReservationService {
         ]
         const reservations = await ReservationModel.aggregate(aggregate).exec();
         return reservations;
-    }
+    },
 
-    async findByCode(id) {
+    findByCode: async (id) => {
         const reservation = await ReservationModel.findOne({
             "code": id
         });
 
         return reservation;
-    }
+    },
 
-    async setUsersRoom(roomId, fullName, instagram) {
+    setUsersRoom: async (roomId, fullName, instagram) => {
         try {
             const room = await SchoolModel.findOne({
                 "rooms._id": roomId,
@@ -83,10 +84,10 @@ class ReservationService {
         } catch (error) {
             throw new Error(error.message);
         }
-    }
+    },
 
 
-    async getRoomsByReservation(code) {
+    getRoomsByReservation: async (code) => {
         const aggregate = [
             {
                 '$match': {
@@ -108,7 +109,5 @@ class ReservationService {
         ];
         const reservations = await ReservationModel.aggregate(aggregate).exec();
         return reservations;
-    }
+    },
 }
-
-module.exports = new ReservationService();
