@@ -12,14 +12,6 @@ const destinationSchema = new Schema({
         type: String,
         unique: true,
     },
-    colorName: {
-        type: String,
-        required: true,
-    },
-    backgroundColor: {
-        type: String,
-        required: true,
-    },
     enabled: {
         type: Boolean,
         default: false,

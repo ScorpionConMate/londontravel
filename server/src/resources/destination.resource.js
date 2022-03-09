@@ -15,24 +15,8 @@ const DestinationResource = {
                 type: 'text',
                 isDisabled: true,
             },
-            colorName: {
-                type: 'text',
-                props: {
-                    type: 'color'
-                },
-            },
-            backgroundColor: {
-                type: 'text',
-                props: {
-                    type: 'color',
-                },
-                isVisible: {
-                    list: false,
-                    filter: false
-                }
-            }
         },
-    }
+    },
 };
 
 module.exports = { DestinationResource };

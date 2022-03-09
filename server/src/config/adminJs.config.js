@@ -9,6 +9,27 @@ const { Roles } = require('../utils/roles.util.js');
  */
 const AdminJsConfig = {
     resources: AdminJsResources,
+    locale: {
+        language: 'en',
+        translations: {
+            actions: {
+                new: 'Nuevo registro', // (resource action) - create new records in a resource
+                list: 'Ver registros', // (resource action) - list all records within a resource
+                search: 'Buscar', // (resource action) - search by query string
+                edit: 'Editar', // (record action) - update records in a resource
+                show: 'Ver', // (record action) - show details of given record
+                delete: 'Borrar', // (record action) - delete given record
+                bulkDelete: 'Borrado Masivo', // (bulk action) - delete given records
+                filter: 'Ver filtros', // (resource action) - filter records by given query string
+            },
+            buttons: {
+                filter: 'Filtrar', // (resource action) - filter records by given query string
+                reset: 'Reiniciar', // (resource action) - reset filter
+                save: 'Guardar', // (record action) - save given record
+                edit: 'Editar', // (record action) - edit given record
+            }
+        }
+    },
     rootPath: '/admin',
     version: {
         admin: true
@@ -37,7 +58,7 @@ const AuthenticationOptions = {
         if (user) {
             const matched = await user.isValidPassword(password);
             if (matched) {
-                return user.role === Roles.ADMIN;
+                return user.role === Roles.ADMIN ? user : false;
             }
         }
         return false;

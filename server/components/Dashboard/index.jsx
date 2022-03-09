@@ -16,7 +16,7 @@ const Dashboard = () => {
     return (
         <Box variant="grey">
             <Box variant="white">
-                some dashboard
+                LondonTravel Dashboard
             </Box>
         </Box>
     )

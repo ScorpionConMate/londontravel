@@ -8,7 +8,7 @@ const AdminJsResources = [
     UserResource,
     ReservationResource,
     DestinationResource,
-    SchoolResource
+    SchoolResource,
 ];
 
 module.exports = { AdminJsResources };
