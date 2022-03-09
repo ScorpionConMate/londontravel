@@ -1,16 +1,11 @@
-<div
-  [classList]="[
-    showCode == true ? 'min-vh-100 container d-flex flex-column' : 'container'
-  ]"
->
+<div [classList]="[
+    showCode == true ? 'min-vh-100 container d-flex flex-column' : 'container d-flex flex-column',
+  ]">
   <app-header-destiny></app-header-destiny>
   <div *ngIf="!showCode && !showPax">
     <app-formDestiny></app-formDestiny>
   </div>
-  <div
-    class="d-flex text-center justify-content-center mt-5 pt-5"
-    *ngIf="showCode"
-  >
+  <div class="d-flex text-center justify-content-center mt-5 pt-5" *ngIf="showCode">
     <app-showCode></app-showCode>
   </div>
   <div *ngIf="showPax">

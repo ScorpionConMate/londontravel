@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-title',
@@ -6,7 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./title.component.css'],
 })
 export class TitleComponent implements OnInit {
-  constructor() {}
+  @Input() infoSchool: any;
+  constructor() {
+  }
 
   ngOnInit() {}
+
+  transformTurn(value: any): string {
+    const HourTurn = {
+      morning: 'Mañana',
+      afternoon: 'Tarde',
+      night: 'Noche',
+    };
+
+    //@ts-ignore
+    return HourTurn[value] ?? '';
+  }
 }

@@ -1,6 +1,6 @@
-<div class="container-fluid d-flex flex-column min-vh-100 bg-dark">
+<div class="container-fluid d-flex flex-column min-vh-100 bg">
   <div class="body flex-grow-1 px-3">
-    <app-title></app-title>
+    <app-title [infoSchool]="school"></app-title>
     <div class="container d-flex justify-content-start my-5 center-availables">
       <app-availables [roomsAvailable]="school.rooms"></app-availables>
     </div>

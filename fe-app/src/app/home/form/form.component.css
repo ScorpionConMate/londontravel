@@ -1,0 +1,21 @@
+.input-form {
+  background-color: #d7e2f0;
+  color: #75797b;
+  border: none;
+  border-radius: 30px;
+  width: 100%;
+  text-align: center;
+  box-shadow: inset 0px 4px 14px 0px #cad6e9;
+  min-height: 45px;
+}
+
+.btn-form {
+  background-color: #d7e2f0;
+  color: #75797b;
+  border: none;
+  border-radius: 30px;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 1px 4px 14px 0px #cad6e9;
+  min-height: 45px;
+}

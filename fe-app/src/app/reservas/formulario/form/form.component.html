@@ -1,30 +1,25 @@
-<form [formGroup]="form">
-  <div class="container my-3 text-center">
+<form [formGroup]="passengerForm">
+  <div class="container my-3 text-center" formArrayName="passengers">
     <div>
-      <h3 class="fs-3 text-white">HABITACION {{ this.id }}</h3>
+      <h3 class="fs-3">{{room.name}}</h3>
       <p class="mb-5">
-        <small class="text-white">
-          "Colegio Ciclo Basico / Division 5 A / Bahia Blanca / Promo 2022"
+        <small class="">
+
         </small>
       </p>
     </div>
-    <div class="row" *ngFor="let item of items">
-      <div class="col-md-8 my-3">
-        <input
-          type="text"
-          class="form-control form-rounded"
-          placeholder="Nombre & Apellido - Pasajero"
-          formControlName="nombre"
-        />
-        <input
-          type="text"
-          class="form-control my-2 form-rounded"
-          placeholder="Cuenta de instagram"
-          formControlName="instagram"
-        />
-      </div>
-      <div class="col-md-2 self">
-        <button class="btn btn-light self button">Cargar</button>
+    <button class="btn-form button" (click)="addPassenger()" [disabled]="disableNewPassenger()">AGREGAR NUEVO</button>
+    <div class="row" *ngFor="let item of passengers.controls; let i = index">
+      <div class="col-md-12" [formGroupName]="i">
+        <div class="col-md-8 my-3">
+          <input type="text" class="form-control form-rounded" placeholder="Nombre & Apellido - Pasajero"
+            formControlName="fullName" />
+          <input type="text" class="form-control my-2 form-rounded" placeholder="Cuenta de instagram"
+            formControlName="instagram" />
+        </div>
+        <div class="col-md-2">
+          <button class="btn-form button" (click)="onSubmit(i)">Cargar</button>
+        </div>
       </div>
     </div>
   </div>

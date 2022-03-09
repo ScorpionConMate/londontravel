@@ -15,7 +15,7 @@ export class ShowCodeComponent implements OnInit {
     setTimeout(() => {
       // @ts-ignore
       this.codigo = sessionStorage.getItem('code');
-    }, 1000);
+    }, 300);
   }
 
   removeCode() {

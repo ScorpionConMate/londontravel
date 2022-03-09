@@ -8,9 +8,11 @@ import { FormDestinyComponent } from './formDestiny/formDestiny.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShowCodeComponent } from './showCode/showCode.component';
 import { ShowPaxComponent } from './ShowPax/ShowPax.component';
+import { PaxListComponent } from './pax-list/pax-list.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  imports: [CommonModule, DestinyRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, DestinyRoutingModule, ReactiveFormsModule, MatDialogModule],
   declarations: [
     DestinationsComponent,
     ContainerDestinyComponent,
@@ -18,6 +20,8 @@ import { ShowPaxComponent } from './ShowPax/ShowPax.component';
     FormDestinyComponent,
     ShowCodeComponent,
     ShowPaxComponent,
+    PaxListComponent,
   ],
+  entryComponents: [PaxListComponent]
 })
 export class DestinationsModule {}

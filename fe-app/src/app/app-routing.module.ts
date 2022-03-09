@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Authv2Guard } from './helpers/authv2.guard';
 import { ContainerComponent } from './home/container/container.component';
 
 const routes: Routes = [
-  { path: '', component: ContainerComponent },
+  { path: '', component: ContainerComponent,
+ },
   {
     path: 'reservas',
     loadChildren: () =>
@@ -13,6 +15,7 @@ const routes: Routes = [
     path: 'staff',
     loadChildren: () =>
       import('./staff/login.module').then((m) => m.LoginModule),
+
   },
   { path: '**', redirectTo: '' },
 ];

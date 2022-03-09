@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DestinyService } from 'src/app/services/destiny.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import getCurrentYearAndPlus from 'src/utils/date';
 import { School } from 'src/app/models/school';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-formDestiny',
   templateUrl: './formDestiny.component.html',
@@ -25,25 +26,26 @@ export class FormDestinyComponent implements OnInit {
   constructor(
     private service: DestinyService,
     private formBuilder: FormBuilder,
+    private router: Router,
     private http: HttpClient
   ) {}
 
   ngOnInit() {
     this.getDestinies();
     this.payloadForm = new FormGroup({
-      destiny: new FormControl(null),
-      colegio: new FormControl(null),
-      division: new FormControl(null),
-      turno: new FormControl(null),
-      localidad: new FormControl(null),
-      fecha: new FormControl(null),
-      cantidad: new FormControl(null),
+      destiny: new FormControl(null, Validators.required),
+      colegio: new FormControl(null, Validators.required),
+      division: new FormControl(null, Validators.required),
+      turno: new FormControl(null, Validators.required),
+      localidad: new FormControl(null, Validators.required),
+      fecha: new FormControl(null, Validators.required),
+      cantidad: new FormControl(null, Validators.required),
     });
     sessionStorage.removeItem('code');
   }
 
-  sendReservation(event: any) {
-    event.preventDefault();
+  sendReservation() {
+
 
     const payload: { destiny: string; school: School } = {
       destiny: this.payloadForm.value.destiny,
@@ -56,13 +58,22 @@ export class FormDestinyComponent implements OnInit {
         passengersQuantity: this.payloadForm.value.cantidad,
       },
     };
+    // @ts-ignore
+    const validation = Object.keys(this.payloadForm.value).some((val) => Boolean(this.payloadForm.value[val]))
+    if (!validation) {
+      alert('Por favor complete todos los campos');
+      return;
+    }
+
     this.service.createReservation(payload).subscribe(
-      (response) => {
-        // @ts-ignore
-        sessionStorage.setItem('code', response?.code);
-      },
-      (error) => {
-        console.log(error);
+      {
+        next: (response: any) => {
+          sessionStorage.setItem('code', response?.code);
+
+        },
+        error: (error) => {
+          alert('Ocurrió un error, por favor intente más tarde');
+        }
       }
     );
   }

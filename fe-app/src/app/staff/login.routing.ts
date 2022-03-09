@@ -5,7 +5,10 @@ import { LoginService } from '../services/login.service';
 import { ContainerLoginComponent } from './containerLogin/containerLogin.component';
 
 const routes: Routes = [
-  { path: '', component: ContainerLoginComponent },
+  { path: '', redirectTo: '/staff/login' , pathMatch: 'full' },
+  {
+    path: 'login', component: ContainerLoginComponent,
+  },
   {
     path: 'destinations',
     loadChildren: () =>
@@ -21,4 +24,4 @@ const routes: Routes = [
   providers: [LoginService],
   exports: [RouterModule],
 })
-export class LoginRoutingModule {}
+export class LoginRoutingModule { }

@@ -2,7 +2,8 @@
 
 html,
 body {
-  height: 100%;
+  min-height: 100vh;
+  background-color: #eef0ef;
 }
 body {
   margin: 0;
@@ -19,4 +20,53 @@ body {
   @media (min-width: 768px) {
     font-size: 20px;
   }
+}
+
+.input-form {
+  background-color: #d7e2f0;
+  color: #75797b;
+  border: none;
+  border-radius: 30px;
+  width: 100%;
+  text-align: center;
+  box-shadow: inset 1px 5px 14px 0px #c1cee4;
+  min-height: 45px;
+}
+
+.btn-form {
+  background-color: #e3e8ef;
+  color: #75797b;
+  border: none;
+  border-radius: 30px;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: inset 1px 5px 14px 0px #c1cee4;
+  min-height: 45px;
+}
+
+.btn-selected {
+  background-color: #d7e2f0;
+  color: #75797b;
+  border: none;
+  border-radius: 30px;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 1px 4px 14px 0px #cad6e9;
+  min-height: 45px;
+  pointer-events: none;
+}
+
+.btn-icon {
+  background-color: #e3e8ef;
+  color: #75797b;
+  border: none;
+  border-radius: 100%;
+  text-align: center;
+  box-shadow: inset 1px 5px 14px 0px #c1cee4;
+  height: 70px;
+  width: 70px;
+}
+.img-logo {
+  max-width: 20%;
+  height: auto;
 }

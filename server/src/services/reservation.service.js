@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const schoolService = require('./school.service.js');
 const { SchoolModel } = require('../models/school.model.js');
 
-module.exports = {
+class ReservationService {
 
-    create: async (user, destiny) => {
+    async create(user, destiny) {
         const { school } = destiny;
         const destinySlug = await destinationService.findBySlug(destiny.destiny)
         const reservation = await ReservationModel.create({
@@ -17,9 +17,9 @@ module.exports = {
         await schoolService.create(school, reservation._id);
 
         return { code: reservation.code }
-    },
+    }
 
-    findByStaff: async (staff) => {
+    async findByStaff(staff) {
         const aggregate = [
             {
                 '$match': {
@@ -45,17 +45,16 @@ module.exports = {
         ]
         const reservations = await ReservationModel.aggregate(aggregate).exec();
         return reservations;
-    },
+    }
 
-    findByCode: async (id) => {
+    async findByCode(id) {
         const reservation = await ReservationModel.findOne({
             "code": id
         });
 
         return reservation;
-    },
-
-    setUsersRoom: async (roomId, fullName, instagram) => {
+    }
+    async setUsersRoom(roomId, fullName, instagram) {
         try {
             const room = await SchoolModel.findOne({
                 "rooms._id": roomId,
@@ -84,10 +83,9 @@ module.exports = {
         } catch (error) {
             throw new Error(error.message);
         }
-    },
+    }
 
-
-    getRoomsByReservation: async (code) => {
+    async getRoomsByReservation(code) {
         const aggregate = [
             {
                 '$match': {
@@ -107,7 +105,17 @@ module.exports = {
                 }
             }
         ];
+
         const reservations = await ReservationModel.aggregate(aggregate).exec();
         return reservations;
-    },
+    }
+    async getRoom(roomId) {
+        const room = await SchoolModel.findOne({
+            "rooms._id": roomId
+        });
+        const roomFiltered = room.rooms.find(r => r._id == roomId);
+        return roomFiltered;
+    }
 }
+
+module.exports = new ReservationService();

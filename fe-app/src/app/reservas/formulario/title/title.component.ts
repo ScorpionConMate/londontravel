@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-title-form',
@@ -6,9 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./title.component.css'],
 })
 export class TitleFormComponent implements OnInit {
+  @Input() room: any;
+  roomData: any;
   constructor() {}
 
-  ngOnInit() {}
+
+
+  ngOnInit() {
+
+  }
 
   message(texto: string) {
     return texto;

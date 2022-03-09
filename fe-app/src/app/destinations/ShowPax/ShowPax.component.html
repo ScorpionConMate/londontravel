@@ -1,26 +1,21 @@
 <div class="d-flex flex-column row" *ngFor="let school of schools">
   <div class="col mt-4">
-    <h2>{{ school.name }}</h2>
-    <h3>{{ school.division }} - {{ school.turn }}</h3>
+    <h2 class="mt-2 ">
+      {{school.school.name }} / Div. {{school.school.division | uppercase}} / Turno
+      {{transformTurn(school.school.turn)}} - Promo
+      {{school.school.travelYear}} <br />
+    </h2>
+    <h3>
+      Ciudad: {{school.school.location | titlecase}} / Total {{ school.school.passengersQuantity }} Pax
+    </h3>
+    <span class="text-muted">
+      Pax con reserva: {{school.school.passengersQuantity}} | Pax Pendientes: {{school.school.passengersLeft}}
+    </span>
   </div>
-  <span class="fs-3"
-    >{{ school.location }} / {{ school.passengersQuantity }} Pax</span
-  >
   <div>
-    <button class="btn btn-dark my-2">Ver mas</button>
+    <button class="btn-form" (click)="showInfo(school.code)">Ver mas</button>
   </div>
 </div>
 <div class="my-3 d-flex justify-content-center flex-column align-items-center">
-  <a
-    class="text-decoration-none"
-    (click)="removeCode()"
-    [routerLink]="['/destinations']"
-    >Volver al inicio</a
-  >
-  <a
-    class="text-decoration-none"
-    (click)="removeToken()"
-    [routerLink]="['/staff']"
-    >Salir</a
-  >
+  <button class="btn-form" [routerLink]="['/staff/destinations']">Volver al inicio</button>
 </div>

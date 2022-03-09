@@ -8,5 +8,6 @@ router.get('/my-reservations', [isAuth, isStaff], reservationController.myReserv
 router.get('/:id', [isAuth, isStaff], reservationController.getReservation);
 router.get('/:code/get-rooms', reservationController.getRoomsByReservation);
 router.put('/set-room/:roomId', reservationController.setRoom);
+router.get('/get-room/:roomId', reservationController.getRoom);
 
 module.exports = router;

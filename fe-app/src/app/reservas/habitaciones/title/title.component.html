@@ -1,13 +1,13 @@
-<div class="container my-5 text-white text-center">
+<div class="container my-5 text-center">
   <div>
     <p>Paso 1 de 3</p>
     <div class="fs-1">
-      <h1 class="titulo">Habitaciones</h1>
-      <h2 class="titulo">disponibles</h2>
+      <h1 class="titulo">Habitaciones Disponibles</h1>
     </div>
-    <span class="mt-2">
-      Colegio Ciclo Basico / 5 A - Promo 2022 <br />
-      - Bahia Blanca"
+    <span class="mt-2 ">
+      {{infoSchool.name }} / {{infoSchool.division | uppercase}} {{transformTurn(infoSchool.turn)}} - Promo
+      {{infoSchool.travelYear}} <br />
+      - {{infoSchool.location | titlecase}}
     </span>
   </div>
 </div>

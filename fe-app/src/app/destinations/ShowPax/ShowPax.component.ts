@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { transformTurn } from 'src/app/helpers/utils';
 import { School } from 'src/app/models/school';
 import { ReservationsService } from 'src/app/services/reservations.service';
+import { PaxListComponent } from '../pax-list/pax-list.component';
 
 @Component({
   selector: 'app-ShowPax',
@@ -10,36 +13,53 @@ import { ReservationsService } from 'src/app/services/reservations.service';
 export class ShowPaxComponent implements OnInit {
   token: string = '';
 
-  schools: School[] = Array<School>();
+  schools?: any[];
 
-  constructor(private service: ReservationsService) {}
+  constructor(
+    private service: ReservationsService,
+    private dialog: MatDialog,
+    ) {}
 
   ngOnInit() {
     // @ts-ignore
     this.token = localStorage.getItem('token');
 
-    this.service.getMyReservations(this.token).subscribe((res) => {
-      // @ts-ignore
-      this.schools = res.schools.map((escuela: any) => {
-        return {
-          name: escuela.school?.name,
-          turn: escuela.school?.turn,
-          division: escuela.school?.division,
-          location: escuela.school?.location,
-          travelYear: escuela.school?.travelYear,
-          passengersQuantity: escuela.school?.passengersQuantity,
-        };
-      });
-      return this.schools;
+    this.service.getMyReservations(this.token).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        // @ts-ignore
+        this.schools = data.schools;
+      }
     });
   }
 
   removeCode() {
     sessionStorage.removeItem('code');
+
   }
 
   removeToken() {
     localStorage.removeItem('token');
     sessionStorage.removeItem('code');
+  }
+  transformTurn(value: any): string {
+    const HourTurn = {
+      morning: 'Mañana',
+      afternoon: 'Tarde',
+      night: 'Noche',
+    };
+
+    // @ts-ignore
+    return HourTurn[value] ?? '';
+  }
+
+  showInfo(code: string) {
+    console.log(code);
+    this.dialog.open(PaxListComponent, {
+      data: {
+        code,
+      },
+      minWidth: '50%',
+    })
   }
 }

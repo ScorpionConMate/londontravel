@@ -26,10 +26,9 @@ export class StepOneCnComponent implements OnInit {
   getSchoolData(): void {
     this.apiService.get(`/reservations/${this.code}/get-rooms`).subscribe({
       next: (response) => {
-        const data = response?.[0];
-        if (data) {
-          this.school = data.school;
-          console.log(this.school);
+        console.log(response);
+        if (response) {
+          this.school = response.school;
         }
       },
     });

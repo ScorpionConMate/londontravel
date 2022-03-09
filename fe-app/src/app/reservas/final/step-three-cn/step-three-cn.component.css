@@ -1,0 +1,5 @@
+.bg {
+  background-image: url("/assets/img/bg-reservas.png");
+  background-size: contain;
+  height: 100vh;
+}

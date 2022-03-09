@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-step-two-cn',
@@ -6,7 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./step-two-cn.component.css'],
 })
 export class StepTwoCnComponent implements OnInit {
-  constructor() {}
+  room: any;
+  isLoading = true;
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiService
+  ) {
+    this.getData();
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
+
+  getData(){
+    this.apiService.get('reservations/get-room/' + this.route.snapshot.paramMap.get('roomId')).subscribe({
+      next: (data) => {
+        this.room = data;
+        this.isLoading = false;
+      }
+    })
+  }
 }
+// 6228103e487d6224f950cdd8

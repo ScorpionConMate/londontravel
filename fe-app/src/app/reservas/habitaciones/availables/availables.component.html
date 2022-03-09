@@ -1,28 +1,21 @@
-<div
-  class="container my-5 text-white"
-  *ngFor="let item of roomsAvailable; let i = index"
->
+<div class="container my-5" *ngFor="let item of roomsAvailable; let i = index">
   <div class="col-md-8 d-flex ms-2">
-    <div>
-      <img
-        src="https://blog.hmax.com.br/wp-content/uploads/2018/12/265713-confira-8-dicas-e-cuidados-com-a-roupa-de-cama-para-hotel.jpg"
-        class="images"
-        alt="camas"
-      />
+    <div class="px-3">
+      <img src="/assets/img/homecircle.png" class="images" alt="camas" />
     </div>
     <div class="d-flex justify-content-between">
       <div class="d-flex flex-column justify-content-between">
-        <h5>{{ item.name }}</h5>
+        <h2>{{ item.name }}</h2>
         <p class="cards-text">
-          {{ this.item.passengers }}
+
+          <ng-container *ngFor="let passenger of item.passengers; let passIndex = index">
+            {{ passenger.fullName }} </ng-container>
         </p>
-        <button
-          mat-raised-button
-          color="primary"
-          [disabled]="item.passengers.length >= 4"
-        >
-          {{ item.isAvailable ? "Cargar" : "Hab. Completa" }}
-        </button>
+        <button [disabled]="item.passengers.length >= 4" (click)="setUserRoom(item)" [ngClass]="{
+            'btn-fullRoom': item.passengers.length >= 4,
+            'btn-form': item.passengers.length < 4
+          }">
+          {{ (item.passengers.length < 4 ? "Cargar" : "Hab. Completa" ) | uppercase}} </button>
       </div>
     </div>
   </div>

@@ -10,11 +10,11 @@ const { AdminJsConfig, AuthenticationOptions } = require('./config/adminJs.confi
 require('./services/auth.service.js');
 const UserRepository = require('./repositories/user.repository');
 AdminJS.registerAdapter(AdminJSMongoose);
+
 mongoose.connect(
     process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-
 }).then(() => console.log('Connected to MongoDB'));
 
 const app = express();

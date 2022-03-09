@@ -70,7 +70,19 @@ class ReservationController {
 
         try {
             const rooms = await reservationService.getRoomsByReservation(code);
-            return res.status(200).json(rooms);
+            return res.status(200).json(rooms[0]);
+        } catch (e) {
+            return res.status(400).json({ error: e.message });
+        }
+    }
+
+    async getRoom(req, res) {
+        const { roomId } = req.params;
+
+        try {
+            console.log(roomId);
+            const room = await reservationService.getRoom(roomId);
+            return res.status(200).json(room);
         } catch (e) {
             return res.status(400).json({ error: e.message });
         }

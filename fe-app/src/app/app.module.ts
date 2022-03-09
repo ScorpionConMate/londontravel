@@ -14,6 +14,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { FooterComponent } from './home/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MaterialModule } from './material/material.module';
     ContainerComponent,
     MainComponent,
     FormComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

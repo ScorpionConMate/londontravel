@@ -12,6 +12,7 @@ import { FormHabitacionesComponent } from './formulario/form/form.component';
 import { StepTwoCnComponent } from './formulario/step-two-cn/step-two-cn.component';
 import { TitleFormComponent } from './formulario/title/title.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FooterComponent } from '../home/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReservasRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+
   ],
   declarations: [
     ReservasComponent,

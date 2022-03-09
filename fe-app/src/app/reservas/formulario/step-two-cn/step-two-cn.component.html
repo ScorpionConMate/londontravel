@@ -1,8 +1,8 @@
-<div class="container-fluid d-flex flex-column min-vh-100 bg-dark">
+<div class="container-fluid d-flex flex-column min-vh-100">
   <div class="body flex-grow-1 px-3">
-    <app-title-form></app-title-form>
-    <div class="my-5">
-      <app-form-formulario></app-form-formulario>
-    </div>
+    <ng-container *ngIf="!isLoading">
+      <app-title-form [room]="room"></app-title-form>
+      <app-form-formulario [room]="room"></app-form-formulario>
+    </ng-container>
   </div>
 </div>

@@ -1,0 +1,16 @@
+.circular-img {
+  display: inline-block;
+  border-radius: 50%;
+  height: 400px;
+  width: 400px;
+}
+.circular-img img {
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.txt-hab {
+  font-size: 20px;
+  font-weight: bold;
+}

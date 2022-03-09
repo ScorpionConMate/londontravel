@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { AfterContentInit, AfterViewChecked, Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-form-formulario',
@@ -8,20 +9,82 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./form.component.scss'],
 })
 export class FormHabitacionesComponent implements OnInit {
-  items = [1, 2, 3, 4];
+  @Input() room: any;
 
-  form = new FormGroup({
-    nombre: new FormControl(''),
-    instagram: new FormControl(''),
-  });
+  // @ts-ignore
+  passengerForm: FormGroup;
 
-  id!: number;
+  constructor(
+    private _fb: FormBuilder,
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
+  }
 
-  constructor(private activeRoute: ActivatedRoute) {}
-
-  ngOnInit() {
-    this.activeRoute.params.subscribe((params) => {
-      this.id = params['id'];
+  get passengers(): FormArray {
+    return this.passengerForm.get('passengers') as FormArray;
+  }
+  ngOnInit(): void {
+    this.passengerForm = this._fb.group({
+      passengers: this._fb.array(this.room.passengers.map((passenger: any) => this.initPassenger(passenger)))
     });
+  }
+
+  initPassenger(passenger?: any) {
+    const group = this._fb.group({
+      fullName: [passenger.fullName || ''],
+      instagram: [passenger.instagram || ''],
+    })
+    if (group.value.fullName || group.value.instagram) {
+      group.get('fullName')?.disable();
+      group.get('instagram')?.disable();
+    }
+    return group;
+  }
+
+  transformTurn(value: 'morning' | 'afternoon' | 'night'): string {
+    const HourTurn = {
+      morning: 'Mañana',
+      afternoon: 'Tarde',
+      night: 'Noche',
+    };
+
+    return HourTurn[value];
+  }
+
+  disableLoad(index: number) {
+    const hasValues = Object.values(this.passengers.controls[index].value).map(value => {
+      return !!value;
+    });
+
+    return (hasValues[0] || hasValues[1]);
+  }
+
+  onSubmit(i: number) {
+    const data = this.passengers.controls[i].value;
+    this.goFinalStep();
+    /* this.apiService.put(`reservations/set-room/${this.room._id}`, data).subscribe({
+      next: (data) => {
+        this.passengers.controls[i].get('fullName')?.disable();
+        this.passengers.controls[i].get('instagram')?.disable();
+        this.router.navigate(['/reservas/finish']);
+      }
+    }) */
+  }
+
+  addPassenger() {
+    this.passengers.push(this.initPassenger({
+      fullName: '',
+      instagram: '',
+    }));
+  }
+
+  disableNewPassenger() {
+    return this.passengers.controls.length >= 4;
+  }
+
+  goFinalStep(){
+    this.router.navigate([`/reservas/${this.route.snapshot.url[0].path}/finish`]);
   }
 }

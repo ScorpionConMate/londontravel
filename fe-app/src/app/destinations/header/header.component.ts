@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -18,7 +18,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private Auth: AuthService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -37,6 +38,10 @@ export class HeaderComponent implements OnInit {
   }
 
   isMain() {
-    console.log(this.activatedRoute);
+    return this.activatedRoute.snapshot.url[0]?.path === 'showPax';
+  }
+
+  redirectTo(url: string) {
+    this.router.navigate([url]);
   }
 }
