@@ -5,34 +5,33 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DestinationGuard implements CanLoad {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getDestinations() {
     return new Promise((res, rej) => {
-      this.http.get(`${environment.baseUrl}/destinations`).subscribe(
-        (data) =>{
-          res(data);
-        }
-      );
+      this.http.get(`${environment.baseUrl}/destinations`).subscribe((data) => {
+        res(data);
+      });
     });
   }
 
-
   canLoad(
     route: Route,
-    segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      console.log('DestinationGuard');
-      console.log({route, segments});
+    segments: UrlSegment[]
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    console.log('DestinationGuard');
+    console.log({ route, segments });
 
-      this.http.get(`${environment.baseUrl}/destinations`).subscribe(
-        (data) =>{
-          console.log(data);
-        }
-      );
+    this.http.get(`${environment.baseUrl}/destinations`).subscribe((data) => {
+      console.log(data);
+    });
     return true;
   }
 }

@@ -8,15 +8,17 @@ const routes: Routes = [
   { path: '', component: ContainerLoginComponent },
   {
     path: 'destinations',
-    loadChildren: () => import('../destinations/destinations.module').then(m => m.DestinationsModule),
-    canLoad: [Authv2Guard]
+    loadChildren: () =>
+      import('../destinations/destinations.module').then(
+        (m) => m.DestinationsModule
+      ),
+    canLoad: [Authv2Guard],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   providers: [LoginService],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
 export class LoginRoutingModule {}

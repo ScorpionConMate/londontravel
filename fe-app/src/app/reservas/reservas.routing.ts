@@ -6,13 +6,12 @@ import { StepOneCnComponent } from './habitaciones/step-one-cn/step-one-cn.compo
 
 const routes: Routes = [
   { path: '', component: StepOneCnComponent },
-  { path: ':id' , component: StepTwoCnComponent },
-  { path: ':id/finish' , component: StepThreeCnComponent },
+  { path: ':id', component: StepTwoCnComponent },
+  { path: ':id/finish', component: StepThreeCnComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
 export class ReservasRoutingModule {}

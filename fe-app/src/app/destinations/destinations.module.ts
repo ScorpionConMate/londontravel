@@ -17,7 +17,7 @@ import { ShowPaxComponent } from './ShowPax/ShowPax.component';
     HeaderComponent,
     FormDestinyComponent,
     ShowCodeComponent,
-    ShowPaxComponent
+    ShowPaxComponent,
   ],
 })
 export class DestinationsModule {}

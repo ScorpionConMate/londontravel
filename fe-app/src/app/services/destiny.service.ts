@@ -11,7 +11,7 @@ export class DestinyService {
 
   constructor(private http: HttpClient) {}
 
-  createReservation(payload: { destiny: string, school: School }) {
-    return this.http.post(this.baseUrl, payload );
+  createReservation(payload: { destiny: string; school: School }) {
+    return this.http.post(this.baseUrl, payload);
   }
 }

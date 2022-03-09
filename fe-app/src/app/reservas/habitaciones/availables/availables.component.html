@@ -1,4 +1,7 @@
-<div class="container my-5 text-white" *ngFor="let item of roomsAvailable; let i = index">
+<div
+  class="container my-5 text-white"
+  *ngFor="let item of roomsAvailable; let i = index"
+>
   <div class="col-md-8 d-flex ms-2">
     <div>
       <img
@@ -9,14 +12,16 @@
     </div>
     <div class="d-flex justify-content-between">
       <div class="d-flex flex-column justify-content-between">
-        <h5>Habitacion {{ i < 10 ? 0 : '' }}{{ i }}</h5>
+        <h5>Habitacion {{ i < 10 ? 0 : "" }}{{ i }}</h5>
         <p class="cards-text">
           {{ item.isAvailable ? "Disponible" : this.groupOne }}
         </p>
-        <div [ngClass]="{
-          'start-align ms-2' : !item.isAvailable,
-          'end-align' : item.isAvailable
-        }">
+        <div
+          [ngClass]="{
+            'start-align ms-2': !item.isAvailable,
+            'end-align': item.isAvailable
+          }"
+        >
           <button
             [disabled]="item.isAvailable === false"
             [ngClass]="{

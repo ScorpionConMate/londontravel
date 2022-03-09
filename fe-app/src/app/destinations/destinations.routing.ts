@@ -28,7 +28,7 @@ const routes: Routes = [
       showCode: false,
       showPax: true,
     },
-  }
+  },
 ];
 
 @NgModule({

@@ -10,16 +10,12 @@ import { AuthService } from 'src/app/services/auth.service';
 export class FormLoginComponent implements OnInit {
   form = this.buildForm();
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private service: AuthService
-  ) {}
+  constructor(private formBuilder: FormBuilder, private service: AuthService) {}
 
   ngOnInit() {}
 
   sendLogin() {
-    this.service
-      .login(this.form.value.username, this.form.value.password)
+    this.service.login(this.form.value.username, this.form.value.password);
   }
 
   private buildForm(): FormGroup {

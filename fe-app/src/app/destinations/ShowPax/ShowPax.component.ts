@@ -42,5 +42,4 @@ export class ShowPaxComponent implements OnInit {
     localStorage.removeItem('token');
     sessionStorage.removeItem('code');
   }
-
 }

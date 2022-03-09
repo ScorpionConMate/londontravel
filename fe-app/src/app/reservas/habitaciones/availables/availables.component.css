@@ -1,15 +1,15 @@
 .images {
-    height: 150px;
-    width: 150px;
-    border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
 }
 
-.round-btn{
-    border-radius: 2rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+.round-btn {
+  border-radius: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .start-align {
-    place-self: start;
+  place-self: start;
 }

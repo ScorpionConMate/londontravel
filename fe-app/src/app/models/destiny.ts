@@ -1,6 +1,6 @@
-import { School } from "./school";
+import { School } from './school';
 
 export interface Destiny {
-    destiny: string;
-    school: School;
+  destiny: string;
+  school: School;
 }

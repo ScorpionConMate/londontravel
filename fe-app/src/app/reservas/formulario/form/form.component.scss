@@ -1,13 +1,13 @@
 .self {
-    place-self: center;
-    
-    &.button {
-        padding-left: 3rem;
-        padding-right: 3rem;
-        border-radius: 2rem;
-    }
+  place-self: center;
+
+  &.button {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-radius: 2rem;
+  }
 }
 
 .form-rounded {
-    border-radius: 2rem;
+  border-radius: 2rem;
 }

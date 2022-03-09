@@ -3,11 +3,15 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-availables',
   templateUrl: './availables.component.html',
-  styleUrls: ['./availables.component.css']
+  styleUrls: ['./availables.component.css'],
 })
 export class AvailablesComponent implements OnInit {
-
-  groupOne: Array<string> = ["Juan Perez", "Peluchin Rodriguez" , "Jonathan Dyallo", "Alan Rodriguez" ]
+  groupOne: Array<string> = [
+    'Juan Perez',
+    'Peluchin Rodriguez',
+    'Jonathan Dyallo',
+    'Alan Rodriguez',
+  ];
 
   roomsAvailable: Array<any> = [
     {
@@ -42,8 +46,7 @@ export class AvailablesComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
-
 }

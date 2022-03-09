@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class ShowCodeComponent implements OnInit {
   codigo: string = '';
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     setTimeout(() => {
@@ -30,16 +30,19 @@ export class ShowCodeComponent implements OnInit {
   share() {
     console.log('share');
     if (navigator.share) {
-      navigator.share({
-        title: 'Reserva de viaje',
-        text: 'Comparte tu código de reserva',
-        url: environment.urlApp
-      }).then(() => {
-        console.log('Successful share');
-      }).catch(e => {
-        console.log('Error sharing', e);
-      })
-    }else{
+      navigator
+        .share({
+          title: 'Reserva de viaje',
+          text: 'Comparte tu código de reserva',
+          url: environment.urlApp,
+        })
+        .then(() => {
+          console.log('Successful share');
+        })
+        .catch((e) => {
+          console.log('Error sharing', e);
+        });
+    } else {
       console.log('No share');
     }
   }

@@ -1,3 +1,3 @@
 export interface CodeToken {
-    code: string;
+  code: string;
 }

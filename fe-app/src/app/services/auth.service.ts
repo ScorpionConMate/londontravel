@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
-import * as moment from 'moment';
-import { User, UserSession } from '../models/user';
+import { UserSession } from '../models/user';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -27,7 +26,7 @@ export class AuthService {
     this.router.navigate(['staff/destinations']);
   }
 
-  private get token(){
+  private get token() {
     return localStorage.getItem('token') ?? false;
   }
 
@@ -46,13 +45,15 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigateByUrl('/staff', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['staff']);
-    });
+    this.router
+      .navigateByUrl('/staff', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['staff']);
+      });
   }
 
   infoSession() {
-    return this.getSession()
+    return this.getSession();
   }
 
   // @ts-ignore

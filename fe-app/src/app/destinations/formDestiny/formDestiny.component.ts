@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DestinyService } from 'src/app/services/destiny.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import getCurrentYearAndPlus from 'src/utils/date';
@@ -8,17 +8,16 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-formDestiny',
   templateUrl: './formDestiny.component.html',
-  styleUrls: ['./formDestiny.component.scss']
+  styleUrls: ['./formDestiny.component.scss'],
 })
-
 export class FormDestinyComponent implements OnInit {
   date: number[] = getCurrentYearAndPlus();
 
   HourTurn = {
     morning: 'Mañana',
     afternoon: 'Tarde',
-    night: 'Noche'
-  }
+    night: 'Noche',
+  };
 
   payloadForm!: FormGroup;
   destinies: any;
@@ -27,10 +26,10 @@ export class FormDestinyComponent implements OnInit {
     private service: DestinyService,
     private formBuilder: FormBuilder,
     private http: HttpClient
-    ) { }
+  ) {}
 
   ngOnInit() {
-    this.getDestinies()
+    this.getDestinies();
     this.payloadForm = new FormGroup({
       destiny: new FormControl(null),
       colegio: new FormControl(null),
@@ -44,20 +43,19 @@ export class FormDestinyComponent implements OnInit {
   }
 
   sendReservation(event: any) {
-
     event.preventDefault();
 
-    const payload: {destiny: string, school: School} = {
+    const payload: { destiny: string; school: School } = {
       destiny: this.payloadForm.value.destiny,
       school: {
-       name: this.payloadForm.value.colegio,
-       turn: this.payloadForm.value.turno,
-       division: this.payloadForm.value.division,
-       location: this.payloadForm.value.localidad,
-       travelYear: this.payloadForm.value.fecha,
-       passengersQuantity: this.payloadForm.value.cantidad
-    }
-  }
+        name: this.payloadForm.value.colegio,
+        turn: this.payloadForm.value.turno,
+        division: this.payloadForm.value.division,
+        location: this.payloadForm.value.localidad,
+        travelYear: this.payloadForm.value.fecha,
+        passengersQuantity: this.payloadForm.value.cantidad,
+      },
+    };
     this.service.createReservation(payload).subscribe(
       (response) => {
         // @ts-ignore
@@ -69,12 +67,11 @@ export class FormDestinyComponent implements OnInit {
     );
   }
 
-  async getDestinies(){
-    this.http.get(`${environment.baseUrl}/destinations`).subscribe(
-      (response: any) => {
+  async getDestinies() {
+    this.http
+      .get(`${environment.baseUrl}/destinations`)
+      .subscribe((response: any) => {
         this.destinies = response;
-      }
-    );
+      });
   }
-
 }

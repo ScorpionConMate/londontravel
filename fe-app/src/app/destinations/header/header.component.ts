@@ -8,33 +8,35 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
   showCode: boolean = false;
   showPax: boolean = false;
 
   name = {
     first: '',
     last: '',
-  }
+  };
 
-  constructor(private Auth: AuthService, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private Auth: AuthService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.isMain()
+    this.isMain();
     this.activatedRoute.data.subscribe((data) => {
       this.showCode = data['showCode'];
       this.showPax = data['showPax'];
     });
 
-    this.name.first = this.Auth.infoSession()?.firstName
-    this.name.last = this.Auth.infoSession()?.lastName
+    this.name.first = this.Auth.infoSession()?.firstName;
+    this.name.last = this.Auth.infoSession()?.lastName;
   }
 
   logout() {
-    this.Auth.logout()
+    this.Auth.logout();
   }
 
-  isMain(){
-    console.log(this.activatedRoute)
+  isMain() {
+    console.log(this.activatedRoute);
   }
 }

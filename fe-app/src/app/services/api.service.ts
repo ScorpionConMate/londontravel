@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from "src/environments/environment";
+import { environment } from 'src/environments/environment';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
-
   private api = environment.baseUrl;
 
-  public constructor(public http: HttpClient) { }
+  public constructor(public http: HttpClient) {}
 
   /**
    * GET request
@@ -35,7 +34,11 @@ export class ApiService {
    * @param params body of the request.
    * @param options options of the request like headers, body, etc.
    */
-  public post<T>(endPoint: string, params: object, options?: any): Observable<any> {
+  public post<T>(
+    endPoint: string,
+    params: object,
+    options?: any
+  ): Observable<any> {
     return this.http.post<T>(this.api + endPoint, params, options);
   }
 
@@ -45,7 +48,11 @@ export class ApiService {
    * @param params body of the request.
    * @param options options of the request like headers, body, etc.
    */
-  public put<T>(endPoint: string, params: object, options?: any): Observable<any> {
+  public put<T>(
+    endPoint: string,
+    params: object,
+    options?: any
+  ): Observable<any> {
     return this.http.put<T>(this.api + endPoint, params, options);
   }
 
