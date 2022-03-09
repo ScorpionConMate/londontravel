@@ -5,8 +5,8 @@ import { StepTwoCnComponent } from './formulario/step-two-cn/step-two-cn.compone
 import { StepOneCnComponent } from './habitaciones/step-one-cn/step-one-cn.component';
 
 const routes: Routes = [
-  { path: '', component: StepOneCnComponent },
-  { path: ':id', component: StepTwoCnComponent },
+  { path: ':id', component: StepOneCnComponent },
+  // { path: ':id', component: StepTwoCnComponent },
   { path: ':id/finish', component: StepThreeCnComponent },
 ];
 

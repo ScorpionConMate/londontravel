@@ -12,27 +12,13 @@
     </div>
     <div class="d-flex justify-content-between">
       <div class="d-flex flex-column justify-content-between">
-        <h5>Habitacion {{ i < 10 ? 0 : "" }}{{ i }}</h5>
+        <h5>{{ item.name }}</h5>
         <p class="cards-text">
-          {{ item.isAvailable ? "Disponible" : this.groupOne }}
+          {{ this.item.passengers }}
         </p>
-        <div
-          [ngClass]="{
-            'start-align ms-2': !item.isAvailable,
-            'end-align': item.isAvailable
-          }"
-        >
-          <button
-            [disabled]="item.isAvailable === false"
-            [ngClass]="{
-              'btb btn-light btn-lg round-btn mt-2': item.isAvailable,
-              'btn btn-secondary mt-2': !item.isAvailable
-            }"
-            href="/habitaciones"
-          >
-            {{ item.isAvailable ? "Cargar" : "Hab. Completa" }}
-          </button>
-        </div>
+        <button [disabled]="item.passengers.length >= 4" href="/">
+          {{ item.isAvailable ? "Cargar" : "Hab. Completa" }}
+        </button>
       </div>
     </div>
   </div>

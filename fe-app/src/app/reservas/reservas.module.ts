@@ -11,10 +11,15 @@ import { CarrouselComponent } from './formulario/carrousel/carrousel.component';
 import { FormHabitacionesComponent } from './formulario/form/form.component';
 import { StepTwoCnComponent } from './formulario/step-two-cn/step-two-cn.component';
 import { TitleFormComponent } from './formulario/title/title.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, ReservasRoutingModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReservasRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
   declarations: [
     ReservasComponent,
     AvailablesComponent,

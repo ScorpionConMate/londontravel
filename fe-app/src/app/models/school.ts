@@ -5,4 +5,5 @@ export interface School {
   location: string;
   travelYear?: number;
   passengersQuantity: number;
+  rooms?: any[];
 }

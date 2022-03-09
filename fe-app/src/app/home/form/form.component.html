@@ -1,11 +1,19 @@
-<form class="text-center">
+<form class="text-center" [formGroup]="form">
   <div class="my-3 mt-5">
     <input
+      formControlName="code"
       type="input"
       placeholder="Ingresa tu codigo"
       class="form-control"
       name="codigo"
     />
   </div>
-  <button type="submit" class="btn btn-warning fs-3">Aceptar</button>
+  <button
+    type="submit"
+    [disabled]="form.invalid"
+    class="btn btn-warning fs-3"
+    (click)="onAccept()"
+  >
+    Aceptar
+  </button>
 </form>
