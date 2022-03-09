@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://192.168.1.102:3001/api/v1/',
+  // baseUrl: 'http://192.168.1.102:3001/api/v1/',
+  baseUrl: 'http://82db-186-19-123-44.ngrok.io/api/v1/',
   urlApp: 'http://192.168.1.102:4200/',
 };
 
