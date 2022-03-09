@@ -1,19 +1,25 @@
-<form class="text-center" [formGroup]="form">
-  <div class="my-3 mt-5">
-    <input
-      formControlName="code"
-      type="input"
-      placeholder="Ingresa tu codigo"
-      class="form-control"
-      name="codigo"
-    />
+<form class="row d-flex align-items-center flex-column mt-3" [formGroup]="form">
+  <div class="col-md-6">
+    <mat-form-field class="w-100">
+      <mat-label>Ingresa tu código</mat-label>
+      <input
+        required
+        matInput
+        formControlName="code"
+        type="text"
+        placeholder="Ingresa tu código"
+      />
+    </mat-form-field>
   </div>
-  <button
-    type="submit"
-    [disabled]="form.invalid"
-    class="btn btn-warning fs-3"
-    (click)="onAccept()"
-  >
-    Aceptar
-  </button>
+  <div class="col-md-6">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+      (click)="onAccept()"
+    >
+      Aceptar
+    </button>
+  </div>
 </form>

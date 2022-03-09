@@ -7,11 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class AvailablesComponent {
   @Input() roomsAvailable: any[] = [];
-
-  groupOne: Array<string> = [
-    'Juan Perez',
-    'Peluchin Rodriguez',
-    'Jonathan Dyallo',
-    'Alan Rodriguez',
-  ];
 }

@@ -6,7 +6,7 @@ import { StepOneCnComponent } from './habitaciones/step-one-cn/step-one-cn.compo
 
 const routes: Routes = [
   { path: ':id', component: StepOneCnComponent },
-  // { path: ':id', component: StepTwoCnComponent },
+  { path: ':id/2', component: StepTwoCnComponent },
   { path: ':id/finish', component: StepThreeCnComponent },
 ];
 
