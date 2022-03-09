@@ -12,6 +12,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DestinationsModule } from './destinations/destinations.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './helpers/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Material
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -27,6 +35,12 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
     ReservasModule,
     ReactiveFormsModule,
     DestinationsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   providers: [
     {

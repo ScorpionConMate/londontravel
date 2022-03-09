@@ -16,7 +16,12 @@
         <p class="cards-text">
           {{ this.item.passengers }}
         </p>
-        <button [disabled]="item.passengers.length >= 4" href="/">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="item.passengers.length >= 4"
+          href="/"
+        >
           {{ item.isAvailable ? "Cargar" : "Hab. Completa" }}
         </button>
       </div>
