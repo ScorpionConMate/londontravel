@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ReservationsService {
-  baseUrl: string = environment.baseUrl + 'reservations';
+  baseUrl: string = environment.baseUrl + '/reservations';
 
   constructor(private http: HttpClient) {}
 

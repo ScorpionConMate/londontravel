@@ -28,7 +28,6 @@ export class ShowCodeComponent implements OnInit {
   }
 
   share() {
-    console.log('share');
     if (navigator.share) {
       navigator
         .share({

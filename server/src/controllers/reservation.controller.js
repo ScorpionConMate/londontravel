@@ -24,7 +24,6 @@ class ReservationController {
     async myReservations(req, res) {
         try {
             const { user: staff } = req;
-            console.log(staff);
             const schools = await schoolService.findSchoolsByReservations(staff);
 
             return res.status(200).json({ schools });
@@ -78,9 +77,7 @@ class ReservationController {
 
     async getRoom(req, res) {
         const { roomId } = req.params;
-
         try {
-            console.log(roomId);
             const room = await reservationService.getRoom(roomId);
             return res.status(200).json(room);
         } catch (e) {

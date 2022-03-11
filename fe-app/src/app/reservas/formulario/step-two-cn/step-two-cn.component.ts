@@ -22,7 +22,7 @@ export class StepTwoCnComponent implements OnInit {
   }
 
   getData(){
-    this.apiService.get('reservations/get-room/' + this.route.snapshot.paramMap.get('roomId')).subscribe({
+    this.apiService.get('/reservations/get-room/' + this.route.snapshot.paramMap.get('roomId')).subscribe({
       next: (data) => {
         this.room = data;
         this.isLoading = false;
@@ -30,4 +30,4 @@ export class StepTwoCnComponent implements OnInit {
     })
   }
 }
-// 6228103e487d6224f950cdd8
+

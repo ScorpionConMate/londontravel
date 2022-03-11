@@ -8,7 +8,7 @@ import { ApiService } from './api.service';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'auth';
+  private baseUrl = '/auth';
   constructor(private apiService: ApiService, private router: Router) {}
 
   public login(username: any, password: any) {

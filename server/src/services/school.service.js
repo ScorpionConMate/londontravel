@@ -7,7 +7,7 @@ class SchoolService {
 
     async findSchoolsByReservations(staff) {
         const ReservationService = require('./reservation.service.js');
-        console.log(ReservationService, 'hola');
+
         const reservations = await ReservationService.findByStaff(staff);
         return reservations;
     }

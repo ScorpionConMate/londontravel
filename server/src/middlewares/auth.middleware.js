@@ -6,7 +6,6 @@ const isAuth = passport.authenticate('jwt', { session: false });
 
 const isAdmin = async (req, res, next) => {
     const { user } = req;
-    console.log(user);
     const findedUser = await userRepository.findOne(user._id);
 
     if (findedUser.role === Roles.ADMIN) {
@@ -17,7 +16,7 @@ const isAdmin = async (req, res, next) => {
 
 const isStaff = async (req, res, next) => {
     const { user } = req;
-    console.log(user);
+
     const findedUser = await userRepository.findOne(user._id);
 
     if (findedUser.role === Roles.STAFF || findedUser.role === Roles.ADMIN) {

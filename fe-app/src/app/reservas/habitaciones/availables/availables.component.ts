@@ -15,7 +15,6 @@ export class AvailablesComponent {
     this.reservationCode = this.router.url.split('/')[2]
   }
   setUserRoom(roomId: any){
-    console.log(roomId);
     this.router.navigate([`/reservas/${this.reservationCode}/2/${roomId._id}`]);
 
   }

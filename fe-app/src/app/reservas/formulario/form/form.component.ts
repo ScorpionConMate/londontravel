@@ -1,5 +1,5 @@
 import { AfterContentInit, AfterViewChecked, Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -33,8 +33,8 @@ export class FormHabitacionesComponent implements OnInit {
 
   initPassenger(passenger?: any) {
     const group = this._fb.group({
-      fullName: [passenger.fullName || ''],
-      instagram: [passenger.instagram || ''],
+      fullName: [passenger.fullName || '', Validators.required],
+      instagram: [passenger.instagram || '', Validators.required],
     })
     if (group.value.fullName || group.value.instagram) {
       group.get('fullName')?.disable();
@@ -54,23 +54,21 @@ export class FormHabitacionesComponent implements OnInit {
   }
 
   disableLoad(index: number) {
-    const hasValues = Object.values(this.passengers.controls[index].value).map(value => {
-      return !!value;
-    });
+    const values = this.passengers.controls[index];
 
-    return (hasValues[0] || hasValues[1]);
+
+    return !!values.get('fullName')?.value && !!values.get('instagram')?.value && values.disabled;
   }
 
   onSubmit(i: number) {
     const data = this.passengers.controls[i].value;
-    this.goFinalStep();
-    /* this.apiService.put(`reservations/set-room/${this.room._id}`, data).subscribe({
+    this.apiService.put(`/reservations/set-room/${this.room._id}`, data).subscribe({
       next: (data) => {
         this.passengers.controls[i].get('fullName')?.disable();
         this.passengers.controls[i].get('instagram')?.disable();
-        this.router.navigate(['/reservas/finish']);
+        this.goFinalStep();
       }
-    }) */
+    })
   }
 
   addPassenger() {
@@ -87,4 +85,5 @@ export class FormHabitacionesComponent implements OnInit {
   goFinalStep(){
     this.router.navigate([`/reservas/${this.route.snapshot.url[0].path}/finish`]);
   }
+
 }

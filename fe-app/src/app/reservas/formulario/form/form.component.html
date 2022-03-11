@@ -8,7 +8,9 @@
         </small>
       </p>
     </div>
-    <button class="btn-form button" (click)="addPassenger()" [disabled]="disableNewPassenger()">AGREGAR NUEVO</button>
+    <button class="btn-form button" (click)="addPassenger()" [disabled]="disableNewPassenger()"
+      [classList]="disableNewPassenger() ? 'btn-selected' : 'btn-form'">
+      AGREGAR NUEVO</button>
     <div class="row" *ngFor="let item of passengers.controls; let i = index">
       <div class="col-md-12" [formGroupName]="i">
         <div class="col-md-8 my-3">
@@ -18,7 +20,7 @@
             formControlName="instagram" />
         </div>
         <div class="col-md-2">
-          <button class="btn-form button" (click)="onSubmit(i)">Cargar</button>
+          <button class="btn-form" [disabled]="disableLoad(i)" (click)="onSubmit(i)">Cargar</button>
         </div>
       </div>
     </div>

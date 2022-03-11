@@ -6,10 +6,10 @@ const router = Router();
 
 router.post('/login', async (req, res, next) => {
     passport.authenticate('login', async (err, user, info) => {
-        console.log(user);
         try {
 
             if (err | !user) {
+                console.log(err);
                 const error = new Error('An Error Occurred');
                 return res.status(500).json({ error: error.message });
             }

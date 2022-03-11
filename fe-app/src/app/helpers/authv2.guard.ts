@@ -8,11 +8,9 @@ import { AuthService } from '../services/auth.service';
 })
 export class Authv2Guard implements CanLoad, CanActivate {
   constructor(private authService: AuthService, private router: Router) {
-    console.log('Authv2Guard.constructor');
+
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-
-    console.log('Authv2Guard.canActivate', route);
     return this.authService.isLoggedIn();
 
   }
@@ -26,7 +24,6 @@ export class Authv2Guard implements CanLoad, CanActivate {
     | boolean
     | UrlTree {
 
-    console.log('Authv2Guard.canLoad');
     if (this.authService.isLoggedIn()) {
       return true;
     }

@@ -9,10 +9,10 @@
         <p class="cards-text">
 
           <ng-container *ngFor="let passenger of item.passengers; let passIndex = index">
-            {{ passenger.fullName }} </ng-container>
+            {{ passenger.fullName | titlecase}} </ng-container>
         </p>
         <button [disabled]="item.passengers.length >= 4" (click)="setUserRoom(item)" [ngClass]="{
-            'btn-fullRoom': item.passengers.length >= 4,
+            'btn-selected': item.passengers.length >= 4,
             'btn-form': item.passengers.length < 4
           }">
           {{ (item.passengers.length < 4 ? "Cargar" : "Hab. Completa" ) | uppercase}} </button>

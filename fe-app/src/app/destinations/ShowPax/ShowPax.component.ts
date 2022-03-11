@@ -26,7 +26,6 @@ export class ShowPaxComponent implements OnInit {
 
     this.service.getMyReservations(this.token).subscribe({
       next: (data: any) => {
-        console.log(data);
         // @ts-ignore
         this.schools = data.schools;
       }
@@ -54,7 +53,6 @@ export class ShowPaxComponent implements OnInit {
   }
 
   showInfo(code: string) {
-    console.log(code);
     this.dialog.open(PaxListComponent, {
       data: {
         code,

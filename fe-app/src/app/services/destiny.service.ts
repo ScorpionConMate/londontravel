@@ -7,7 +7,7 @@ import { School } from '../models/school';
   providedIn: 'root',
 })
 export class DestinyService {
-  baseUrl: string = environment.baseUrl + 'reservations';
+  baseUrl: string = environment.baseUrl + '/reservations';
 
   constructor(private http: HttpClient) {}
 

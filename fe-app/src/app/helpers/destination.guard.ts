@@ -26,12 +26,7 @@ export class DestinationGuard implements CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log('DestinationGuard');
-    console.log({ route, segments });
 
-    this.http.get(`${environment.baseUrl}/destinations`).subscribe((data) => {
-      console.log(data);
-    });
     return true;
   }
 }

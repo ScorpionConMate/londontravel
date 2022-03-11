@@ -53,5 +53,5 @@ app.use('/api/v1/', routes);
 
 app.listen(port, async () => {
     await UserRepository.createDefaultAdmin();
-    console.log(`Example app listening on port ${port}!`)
+    console.log(`App Backend LondonTravel listening on port ${port}!`)
 });

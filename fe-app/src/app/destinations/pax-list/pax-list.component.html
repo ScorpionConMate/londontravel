@@ -9,7 +9,7 @@
 
       <div class="col-md-6">
         <ng-container *ngFor="let itemPassenger of item.passengers">
-          <h3>{{itemPassenger?.fullName}} / @ {{itemPassenger?.instagram}}</h3>
+          <h3>{{itemPassenger?.fullName | titlecase}} / @ {{itemPassenger?.instagram}}</h3>
         </ng-container>
       </div>
     </div>

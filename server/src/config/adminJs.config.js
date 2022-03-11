@@ -55,7 +55,7 @@ const AuthenticationOptions = {
     authenticate: async (email, password) => {
 
         const user = await userRepository.findByEmail(email);
-        console.log(user);
+
         if (user) {
             const matched = await user.isValidPassword(password);
             if (matched) {
