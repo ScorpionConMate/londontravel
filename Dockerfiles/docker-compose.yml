@@ -22,6 +22,7 @@ services:
       - SERVER_PORT=3000
       - MONGO_URI=${SERVER_MONGO_URI}
       - JWT_TOKEN=${SERVER_JWT_TOKEN}
+      - NODE_ENV=${NODE_ENV}
     ports:
       - ${SERVER_HOST_PORT}:3000
     links:
