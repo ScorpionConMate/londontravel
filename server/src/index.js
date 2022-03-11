@@ -7,8 +7,10 @@ const AdminJSExpress = require('@adminjs/express');
 const AdminJSMongoose = require('@adminjs/mongoose');
 const routes = require('./routes/index.js');
 const { AdminJsConfig, AuthenticationOptions } = require('./config/adminJs.config.js');
+const MongoStore = require('connect-mongo');
 require('./services/auth.service.js');
 const UserRepository = require('./repositories/user.repository');
+
 AdminJS.registerAdapter(AdminJSMongoose);
 
 mongoose.connect(
@@ -23,9 +25,18 @@ const port = process.env.SERVER_PORT;
 app.use(cors());
 
 const adminJs = new AdminJS(AdminJsConfig);
+app.set('trust proxy', 1);
 
-const router = AdminJSExpress.buildAuthenticatedRouter(adminJs, AuthenticationOptions);
-
+const router = AdminJSExpress.buildAuthenticatedRouter(adminJs, AuthenticationOptions, express.Router(),
+    {
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: true,
+        store: new MongoStore({
+            mongoUrl: process.env.MONGO_URI,
+        })
+    });
+app.use('/public', express.static('public'));
 app.use(adminJs.options.rootPath, router);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

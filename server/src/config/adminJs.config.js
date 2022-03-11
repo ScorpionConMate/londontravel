@@ -36,8 +36,8 @@ const AdminJsConfig = {
     },
     branding: {
         companyName: 'London Travel',
-        favicon: 'http://londontravel.com.ar/images/favicon.png',
-        logo: 'http://www.londontravel.com.ar/images/LondonBlackldpi-p-500.png',
+        favicon: '/public/favicon.png',
+        logo: '/public/LondonBlackldpi-p-500.png',
         softwareBrothers: false,
     },
     dashboard: {
@@ -52,12 +52,14 @@ const AdminJsConfig = {
  * @type {AuthenticationOptions}
  */
 const AuthenticationOptions = {
-    authenticate: async (username, password) => {
+    authenticate: async (email, password) => {
 
-        const user = await userRepository.findByEmail(username);
+        const user = await userRepository.findByEmail(email);
+        console.log(user);
         if (user) {
             const matched = await user.isValidPassword(password);
             if (matched) {
+                user.password = undefined;
                 return user.role === Roles.ADMIN ? user : false;
             }
         }
