@@ -8,11 +8,11 @@ RUN npm install
 
 COPY ./fe-app/ ./
 
-RUN ./node_modules/@angular/cli/bin/ng.js build --baseHref=/pax/
+RUN ./node_modules/@angular/cli/bin/ng.js build
 
 FROM nginx:1.21.6-alpine
 
-workdir /usr/share/nginx/html
+WORKDIR /usr/share/nginx/html
 
 COPY ./Dockerfiles/builds/fe-app/virtualhost.conf /etc/nginx/conf.d/default.conf
 
