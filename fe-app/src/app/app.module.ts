@@ -15,6 +15,7 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FooterComponent } from './home/footer/footer.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,10 @@ import { FooterComponent } from './home/footer/footer.component';
       useClass: AuthInterceptor,
       multi: true,
     },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    }
   ],
   bootstrap: [AppComponent],
 })
