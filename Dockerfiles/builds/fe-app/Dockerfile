@@ -8,7 +8,7 @@ RUN npm install
 
 COPY ./fe-app/ ./
 
-RUN ./node_modules/@angular/cli/bin/ng.js build --prod
+RUN ./node_modules/@angular/cli/bin/ng.js build --base-href=/pax
 
 FROM nginx:1.21.6-alpine
 
