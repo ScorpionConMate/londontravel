@@ -8,7 +8,7 @@ RUN npm install
 
 COPY ./fe-app/ ./
 
-RUN ./node_modules/@angular/cli/bin/ng.js build
+RUN ./node_modules/@angular/cli/bin/ng.js build --prod
 
 FROM nginx:1.21.6-alpine
 
